@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>fabrik</title>
-    <link>https://fabrik.red/index.xml</link>
-    <description>Recent content on fabrik</description>
+    <title>Post-rsses on fabrik</title>
+    <link>https://fabrik.red/post/index.xml</link>
+    <description>Recent content in Post-rsses on fabrik</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright> </copyright>
     <lastBuildDate>Tue, 13 Dec 2016 10:06:46 +0100</lastBuildDate>
-    <atom:link href="https://fabrik.red/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://fabrik.red/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>test</title>
@@ -42,15 +42,6 @@ Virtualbox need to convert it to &lt;code&gt;VDI&lt;/code&gt; format:&lt;/p&gt;
 
 &lt;p&gt;Once the image has been booted it can be resized within zfs: &lt;a href=&#34;https://nbari.com/post/zfs/&#34;&gt;https://nbari.com/post/zfs/&lt;/a&gt;&lt;/p&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>🏭   fabrik</title>
-      <link>https://fabrik.red/about/</link>
-      <pubDate>Tue, 13 Dec 2016 09:51:11 +0100</pubDate>
-      
-      <guid>https://fabrik.red/about/</guid>
-      <description></description>
     </item>
     
   </channel>
