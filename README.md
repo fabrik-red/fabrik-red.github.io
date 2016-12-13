@@ -1,2 +1,1 @@
-# fabrik-red.github.io
-fabrik.red
+https://fabrik.red
