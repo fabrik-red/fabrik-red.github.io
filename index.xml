@@ -22,7 +22,7 @@
 
 &lt;p&gt;Download the image:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;https://fabrik.yotta.cloud/file/yotta-cloud/fabrik-freebsd-zfs.tar.gz
+&lt;pre&gt;&lt;code&gt;https://fabrik.yotta.cloud/file/yotta-cloud/disk.tar.gz
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The image can be uploaded directly to google compute engine or to test it within

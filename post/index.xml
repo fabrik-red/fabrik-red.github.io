@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Post-rsses on fabrik</title>
+    <title>Posts on fabrik</title>
     <link>https://fabrik.red/post/index.xml</link>
-    <description>Recent content in Post-rsses on fabrik</description>
+    <description>Recent content in Posts on fabrik</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright> </copyright>
@@ -22,7 +22,7 @@
 
 &lt;p&gt;Download the image:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;https://fabrik.yotta.cloud/file/yotta-cloud/fabrik-freebsd-zfs.tar.gz
+&lt;pre&gt;&lt;code&gt;https://fabrik.yotta.cloud/file/yotta-cloud/disk.tar.gz
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The image can be uploaded directly to google compute engine or to test it within
