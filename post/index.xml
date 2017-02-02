@@ -20,10 +20,7 @@
 
 &lt;h1 id=&#34;draft&#34;&gt;DRAFT&lt;/h1&gt;
 
-&lt;p&gt;Download the image:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;https://fabrik.yotta.cloud/file/yotta-cloud/disk.tar.gz
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Download the image: &lt;a href=&#34;https://fabrik.yotta.cloud/file/yotta-cloud/disk.tar.gz&#34;&gt;disk.tar.gz&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;The image can be uploaded directly to google compute engine or to test it within
 Virtualbox need to convert it to &lt;code&gt;VDI&lt;/code&gt; format:&lt;/p&gt;
