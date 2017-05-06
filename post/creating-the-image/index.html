@@ -76,12 +76,16 @@
                 <section id="post-body">
                     
 
-<h1 id="creating-the-image">Creating the image</h1>
+<h1 id="creating-the-image-disk-raw">Creating the image (disk.raw)</h1>
 
-<p>The fastest way of doing this (less than 1 hour) is to use AWS and chose the
+<p>The fastest way of doing this (less than 1 hour &ldquo;7min&rdquo;) is to use AWS and chose the
 <a href="https://aws.amazon.com/ec2/instance-types/">c4.8xlarge</a> instance, at the moment
 of writhing this, is an instance with 36 vCPU / 60 RAM, the important thing to
 check for is the amount of cores not really the memory.</p>
+
+<blockquote>
+<p>buildworld &amp; buildkernel within a c4.8xlarge can be done in less than 7min.</p>
+</blockquote>
 
 <h3 id="booting-the-instance">Booting the instance</h3>
 
