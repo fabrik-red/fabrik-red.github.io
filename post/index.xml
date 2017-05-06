@@ -28,7 +28,7 @@
       
       <guid>https://fabrik.red/post/test/</guid>
       <description>DRAFT Download the image: disk.tar.gz
-The image can be uploaded directly to google compute engine or to test it within Virtualbox need to convert it to VDI format:
+The image can be uploaded directly to AWS, Google compute engine or to test it within Virtualbox need to convert it to VDI format:
 $ VBoxManage convertfromraw disk.raw ec2.vdi --format VDI  The image size is 2GB, once the image is in VDI format it can be resized:
 $ VBoxManage modifyhd ec2.vdi --resize 20480   20480 will create a 20GB disk
  Once the image has been booted it can be resized within zfs: https://nbari.</description>
