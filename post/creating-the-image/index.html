@@ -91,7 +91,7 @@ check for is the amount of cores not really the memory.</p>
 <p>Tip, search for Colin Percival AMI&rsquo;s</p>
 </blockquote>
 
-<h2 id="svnlite">svnlite</h2>
+<h3 id="svnlite">svnlite</h3>
 
 <p>Once the instance is up and running, update the sources by doing:</p>
 
@@ -100,7 +100,7 @@ check for is the amount of cores not really the memory.</p>
 
 <p>In this case we are using FreeBSD 11</p>
 
-<h2 id="conf-kernel">*.conf &amp; kernel</h2>
+<h3 id="conf-kernel">*.conf &amp; kernel</h3>
 
 <p>Edit file <code>/etc/make.conf</code> and if required the <code>src.conf</code>, to avoid any conflict with an existing configuration file we will use <a href="https://github.com/fabrik-red/images/blob/master/src.conf">/etc/fabrik-src.conf</a> and <code>/etc/src-jail.conf</code> for the jails.</p>
 
@@ -110,7 +110,7 @@ check for is the amount of cores not really the memory.</p>
 # fetch https://rawgit.com/fabrik-red/images/master/fabrik.kernel -o /usr/src/sys/amd64/conf/FABRIK
 </code></pre>
 
-<h2 id="build-jx">Build -jX</h2>
+<h3 id="build-jx">Build -jX</h3>
 
 <p>Build everything under <code>/fabrik</code>:</p>
 
@@ -135,7 +135,7 @@ check for is the amount of cores not really the memory.</p>
 
 <p>Depending on how many cores set the value of <code>-jN</code> in this case <code>N</code> is 36 therefore we use <code>-j36</code></p>
 
-<h2 id="zfs-sh">zfs.sh</h2>
+<h3 id="zfs-sh">zfs.sh</h3>
 
 <p>Create the image by running the <a href="https://rawgit.com/fabrik-red/images/master/zfs.sh">zfs.sh</a> script:</p>
 
@@ -146,7 +146,7 @@ check for is the amount of cores not really the memory.</p>
 
 <p>After finish a <code>disk.raw</code> will be created and can be used as a base image.</p>
 
-<h2 id="aws-custom-ami">AWS custom AMI</h2>
+<h3 id="aws-custom-ami">AWS custom AMI</h3>
 
 <p>To create, upload the custom image is better to doing in US East (N. Virginia),
 once you have test your image and are happy with it you can copy it to other AWS
