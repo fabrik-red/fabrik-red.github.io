@@ -35,7 +35,7 @@ $ VBoxManage modifyhd ec2.vdi --resize 20480   20480 will create a 20GB disk
     </item>
     
     <item>
-      <title>🏭   fabrik</title>
+      <title>What is Fabrik</title>
       <link>https://fabrik.red/about/</link>
       <pubDate>Tue, 13 Dec 2016 09:51:11 +0100</pubDate>
       
