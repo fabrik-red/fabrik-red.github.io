@@ -24,7 +24,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="https://fabrik.red/images/favicon-16x16.png">
 		<link rel="shortcut icon" href="https://fabrik.red/images/favicon.ico">
 		<link rel="stylesheet" href="https://fabrik.red/css/style.css">
-		<link rel="stylesheet" href="https://fabrik.red/css/highlight.css">
+		<link rel="stylesheet" href="https://fabrik.red/css/monokai.css">
 		
 
 		
@@ -78,10 +78,12 @@
 
 <h1 id="creating-the-image-disk-raw">Creating the image (disk.raw)</h1>
 
-<p>The fastest way of doing this (less than 1 hour &ldquo;7min&rdquo;) is to use AWS and chose the
-<a href="https://aws.amazon.com/ec2/instance-types/">c4.8xlarge</a> instance, at the moment
-of writhing this, is an instance with 36 vCPU / 60 RAM, the important thing to
-check for is the amount of cores not really the memory.</p>
+<p>The fastest way of doing this (less than 1 hour &ldquo;7min&rdquo;) is to use AWS and chose
+the <a href="https://aws.amazon.com/ec2/instance-types/">c4.8xlarge</a> instance, at the
+moment of writhing this, is an instance with 36 vCPU / 60 RAM, the important
+thing to check for is the amount of cores not really the memory. After finishing
+building, <strong>stop</strong> or <strong>terminate</strong> the build instance, mainly because is a very
+expensive and in best scenario you just want to do all this in less than 1 hour.</p>
 
 <blockquote>
 <p>buildworld &amp; buildkernel within a c4.8xlarge can be done in less than 7min.</p>
@@ -99,7 +101,7 @@ check for is the amount of cores not really the memory.</p>
 
 <p>Once the instance is up and running, update the sources by doing:</p>
 
-<pre><code># svnlite co svn://svn.freebsd.org/base/stable/11 /usr/src
+<pre><code class="language-sh">svnlite co svn://svn.freebsd.org/base/stable/11 /usr/src
 </code></pre>
 
 <p>In this case we are using FreeBSD 11</p>
@@ -108,33 +110,37 @@ check for is the amount of cores not really the memory.</p>
 
 <p>Edit file <code>/etc/make.conf</code> and if required the <code>src.conf</code>, to avoid any conflict with an existing configuration file we will use <a href="https://github.com/fabrik-red/images/blob/master/src.conf">/etc/fabrik-src.conf</a> and <code>/etc/src-jail.conf</code> for the jails.</p>
 
-<pre><code># fetch https://rawgit.com/fabrik-red/images/master/src.conf -o /etc/fabrik-src.conf
-# fetch https://rawgit.com/fabrik-red/images/master/src-jail.conf -o /etc/src-jail.conf
-# fetch https://rawgit.com/fabrik-red/images/master/make.conf -o /etc/make.conf
-# fetch https://rawgit.com/fabrik-red/images/master/fabrik.kernel -o /usr/src/sys/amd64/conf/FABRIK
-</code></pre>
-
-<h3 id="build-jx">Build -jX</h3>
-
-<p>Build everything under <code>/fabrik</code>:</p>
-
-<pre><code># mkdir -p /fabrik/host
-# mkdir /fabrik/jail
-</code></pre>
-
-<p>The world:</p>
-
-<pre><code># env MAKEOBJDIRPREFIX=/fabrik/host/obj SRCCONF=/etc/fabrik-src.conf make -j36 buildworld
+<pre><code class="language-sh">fetch https://rawgit.com/fabrik-red/images/master/src.conf -o /etc/fabrik-src.conf
+fetch https://rawgit.com/fabrik-red/images/master/src-jail.conf -o /etc/src-jail.conf
+fetch https://rawgit.com/fabrik-red/images/master/make.conf -o /etc/make.conf
 </code></pre>
 
 <p>The kernel:</p>
 
-<pre><code># env MAKEOBJDIRPREFIX=/fabrik/host/obj SRCCONF=/etc/fabrik-src.conf make -j36 buildkernel KERNCONF=FABRIK
+<pre><code class="language-sh">fetch https://rawgit.com/fabrik-red/images/master/fabrik.kernel -o /usr/src/sys/amd64/conf/FABRIK
+</code></pre>
+
+<h3 id="build-jx-j36">Build -jX <code>-j36</code></h3>
+
+<p>Build everything under <code>/fabrik</code>:</p>
+
+<pre><code class="language-sh">mkdir -p /fabrik/host
+mkdir /fabrik/jail
+</code></pre>
+
+<p>The world:</p>
+
+<pre><code class="language-sh">env MAKEOBJDIRPREFIX=/fabrik/host/obj SRCCONF=/etc/fabrik-src.conf make -j36 buildworld
+</code></pre>
+
+<p>The kernel:</p>
+
+<pre><code class="language-sh">env MAKEOBJDIRPREFIX=/fabrik/host/obj SRCCONF=/etc/fabrik-src.conf make -j36 buildkernel KERNCONF=FABRIK
 </code></pre>
 
 <p>The world for the jail:</p>
 
-<pre><code># env MAKEOBJDIRPREFIX=/fabrik/jail/obj SRCCONF=/etc/src-jail.conf make -j36 buildworld
+<pre><code class="language-sh">env MAKEOBJDIRPREFIX=/fabrik/jail/obj SRCCONF=/etc/src-jail.conf make -j36 buildworld
 </code></pre>
 
 <p>Depending on how many cores set the value of <code>-jN</code> in this case <code>N</code> is 36 therefore we use <code>-j36</code></p>
@@ -143,9 +149,9 @@ check for is the amount of cores not really the memory.</p>
 
 <p>Create the image by running the <a href="https://rawgit.com/fabrik-red/images/master/zfs.sh">zfs.sh</a> script:</p>
 
-<pre><code># cd /fabrik
-# fetch https://rawgit.com/fabrik-red/images/master/zfs.sh -o /fabrik/zfs.sh
-# sh zfs.sh
+<pre><code class="language-sh">cd /fabrik
+fetch https://rawgit.com/fabrik-red/images/master/zfs.sh -o /fabrik/zfs.sh
+sh zfs.sh
 </code></pre>
 
 <p>After finish a <code>disk.raw</code> will be created and can be used as a base image.</p>
@@ -281,7 +287,7 @@ zones.</p>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://fabrik.red/js/main.js"></script>
-<script src="https://fabrik.red/js/highlight.js"></script>
+<script src="https://fabrik.red/js/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
 

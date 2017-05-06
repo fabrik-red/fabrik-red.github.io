@@ -257,6 +257,7 @@ h2 {
     display: inline-block;
     width: 80px;
     height: 80px;
+    /*border-radius: 50%;*/
     margin-bottom: 20px;
 }
 
@@ -306,13 +307,13 @@ nav.main-nav a.cta {
 }
 
 #wrapper {
-    max-width: 768px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 60px 40px 100px 40px;
 }
 
 #wrapper.home {
-    max-width: 768px;
+    max-width: 600px;
     margin: 0 auto;
     padding: 0px 40px 20px 40px;
 }
@@ -500,7 +501,6 @@ hr {
 
 span.code {
     font-family: Menlo, Monaco, Courier;
-    background-color: #EEE;
     font-size: 14px;
 }
 
@@ -531,9 +531,9 @@ table {
 
 th,
 td {
-    text-align: left;
+    text-align: center;
     padding-right: 20px;
-    vertical-align: top;
+    vertical-align: bottom;
 }
 
 table td,
@@ -922,7 +922,6 @@ a.symbol:hover {
 
 code {
     font-family: Menlo, Monaco, Courier;
-    background-color: #EEE;
     font-size: 14px;
     padding: 4px;
     font-weight: 600;
