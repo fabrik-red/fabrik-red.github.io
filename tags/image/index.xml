@@ -18,7 +18,7 @@
       <pubDate>Sat, 06 May 2017 15:30:48 +0200</pubDate>
       
       <guid>https://fabrik.red/post/creating-the-image/</guid>
-      <description>Creating the image The fastest way of doing this (less than 1 hour) is to use AWS and chose the c4.8xlarge instance, at the moment of writhing this is an instance with 36 vCPU / 60 RAM, the important thing to check for is the amount of cores not really the memory.
+      <description>Creating the image The fastest way of doing this (less than 1 hour) is to use AWS and chose the c4.8xlarge instance, at the moment of writhing this, is an instance with 36 vCPU / 60 RAM, the important thing to check for is the amount of cores not really the memory.
 Booting the instance Boot using an existing FreeBSD AMI
  Tip, search for Colin Percival AMI&amp;rsquo;s
  svnlite Once the instance is up and running, update the sources by doing:</description>
