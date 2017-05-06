@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on fabrik</title>
-    <link>https://fabrik.red/post/</link>
-    <description>Recent content in Posts on fabrik</description>
+    <title>Aws on fabrik</title>
+    <link>https://fabrik.red/tags/aws/</link>
+    <description>Recent content in Aws on fabrik</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright> </copyright>
     <lastBuildDate>Sat, 06 May 2017 15:30:48 +0200</lastBuildDate>
     
-	<atom:link href="https://fabrik.red/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://fabrik.red/tags/aws/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -22,19 +22,6 @@
 Booting the instance Boot using an existing FreeBSD AMI
  Tip, search for Colin Percival AMI&amp;rsquo;s
  svnlite Once the instance is up and running, update the sources by doing:</description>
-    </item>
-    
-    <item>
-      <title>test</title>
-      <link>https://fabrik.red/post/test/</link>
-      <pubDate>Tue, 13 Dec 2016 10:06:46 +0100</pubDate>
-      
-      <guid>https://fabrik.red/post/test/</guid>
-      <description>DRAFT Download the image: disk.tar.gz
-The image can be uploaded directly to google compute engine or to test it within Virtualbox need to convert it to VDI format:
-$ VBoxManage convertfromraw disk.raw ec2.vdi --format VDI  The image size is 2GB, once the image is in VDI format it can be resized:
-$ VBoxManage modifyhd ec2.vdi --resize 20480   20480 will create a 20GB disk
- Once the image has been booted it can be resized within zfs: https://nbari.</description>
     </item>
     
   </channel>

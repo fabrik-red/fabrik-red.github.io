@@ -2,13 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>fabrik</title>
-    <link>https://fabrik.red/index.xml</link>
+    <link>https://fabrik.red/</link>
     <description>Recent content on fabrik</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright> </copyright>
-    <lastBuildDate>Tue, 13 Dec 2016 10:06:46 +0100</lastBuildDate>
-    <atom:link href="https://fabrik.red/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 06 May 2017 15:30:48 +0200</lastBuildDate>
+    
+	<atom:link href="https://fabrik.red/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Creating the image (disk.raw)</title>
+      <link>https://fabrik.red/post/creating-the-image/</link>
+      <pubDate>Sat, 06 May 2017 15:30:48 +0200</pubDate>
+      
+      <guid>https://fabrik.red/post/creating-the-image/</guid>
+      <description>Creating the image The fastest way of doing this (less than 1 hour) is to use AWS and chose the c4.8xlarge instance, at the moment of writhing this is an instance with 36 vCPU / 60 RAM, the important thing to check for is the amount of cores not really the memory.
+Booting the instance Boot using an existing FreeBSD AMI
+ Tip, search for Colin Percival AMI&amp;rsquo;s
+ svnlite Once the instance is up and running, update the sources by doing:</description>
+    </item>
     
     <item>
       <title>test</title>
@@ -16,29 +30,11 @@
       <pubDate>Tue, 13 Dec 2016 10:06:46 +0100</pubDate>
       
       <guid>https://fabrik.red/post/test/</guid>
-      <description>
-
-&lt;h1 id=&#34;draft&#34;&gt;DRAFT&lt;/h1&gt;
-
-&lt;p&gt;Download the image: &lt;a href=&#34;https://fabrik.yotta.cloud/file/yotta-cloud/disk.tar.gz&#34;&gt;disk.tar.gz&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;The image can be uploaded directly to google compute engine or to test it within
-Virtualbox need to convert it to &lt;code&gt;VDI&lt;/code&gt; format:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ VBoxManage convertfromraw disk.raw ec2.vdi --format VDI
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The image size is 2GB, once the image is in &lt;code&gt;VDI&lt;/code&gt; format it can be resized:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ VBoxManage modifyhd ec2.vdi --resize 20480
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;20480 will create a 20GB disk&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Once the image has been booted it can be resized within zfs: &lt;a href=&#34;https://nbari.com/post/zfs/&#34;&gt;https://nbari.com/post/zfs/&lt;/a&gt;&lt;/p&gt;
-</description>
+      <description>DRAFT Download the image: disk.tar.gz
+The image can be uploaded directly to google compute engine or to test it within Virtualbox need to convert it to VDI format:
+$ VBoxManage convertfromraw disk.raw ec2.vdi --format VDI  The image size is 2GB, once the image is in VDI format it can be resized:
+$ VBoxManage modifyhd ec2.vdi --resize 20480   20480 will create a 20GB disk
+ Once the image has been booted it can be resized within zfs: https://nbari.</description>
     </item>
     
     <item>
