@@ -40,7 +40,9 @@ $ VBoxManage modifyhd ec2.vdi --resize 20480   20480 will create a 20GB disk
       <pubDate>Tue, 13 Dec 2016 09:51:11 +0100</pubDate>
       
       <guid>https://fabrik.red/about/</guid>
-      <description></description>
+      <description>What is Fabrik ? A tool for creating and managing jails withing a custom FreeBSD images having ZFS on root ready to provision jails.
+Why ? FreeBSD is a beast. Unfortunately few are capable of taking advantage all the benefits and capabilities available within it.
+It is a fact that for having a proper setup some work needs to be done, you don&amp;rsquo;t get diamonds by just putting carbon in the microwave and wait for a couple of minutes.</description>
     </item>
     
   </channel>
