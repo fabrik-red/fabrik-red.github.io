@@ -78,12 +78,13 @@
 
 <h1 id="creating-the-image-disk-raw">Creating the image (disk.raw)</h1>
 
-<p>The fastest way of doing this (less than 1 hour &ldquo;7min&rdquo;) is to use AWS and chose
-the <a href="https://aws.amazon.com/ec2/instance-types/">c4.8xlarge</a> instance, at the
-moment of writhing this, is an instance with 36 vCPU / 60 RAM, the important
-thing to check for is the amount of cores not really the memory. After finishing
-building, <strong>stop</strong> or <strong>terminate</strong> the build instance, mainly because is a very
-expensive and in best scenario you just want to do all this in less than 1 hour.</p>
+<p>The fastest way of doing this (less than 1 hour &ldquo;7min&rdquo;) is to use AWS and
+chose the <a href="https://aws.amazon.com/ec2/instance-types/">c4.8xlarge</a> instance,
+at the moment of writhing this, is an instance with 36 vCPU / 60 RAM, the
+important thing to check for, is the amount of cores not really the memory.
+After finishing building, <strong>stop</strong> or <strong>terminate</strong> the build instance, mainly
+because is a very expensive instance and in best scenario you just want to do
+all this in less than 1 hour.</p>
 
 <blockquote>
 <p>buildworld &amp; buildkernel within a c4.8xlarge can be done in less than 7min.</p>
@@ -96,6 +97,9 @@ expensive and in best scenario you just want to do all this in less than 1 hour.
 <blockquote>
 <p>Tip, search for Colin Percival AMI&rsquo;s</p>
 </blockquote>
+
+<p>The idea is to have a working FreeBSD AMI up and running the one will be just
+used for creating the new AMI.</p>
 
 <h3 id="svnlite">svnlite</h3>
 
@@ -128,6 +132,11 @@ fetch https://rawgit.com/fabrik-red/images/master/make.conf -o /etc/make.conf
 mkdir /fabrik/jail
 </code></pre>
 
+<p>Change to the <code>/usr/src</code> directory before building:</p>
+
+<pre><code class="language-sh">cd /usr/src
+</code></pre>
+
 <p>The world:</p>
 
 <pre><code class="language-sh">env MAKEOBJDIRPREFIX=/fabrik/host/obj SRCCONF=/etc/fabrik-src.conf make -j36 buildworld
@@ -158,9 +167,10 @@ sh zfs.sh
 
 <h3 id="aws-custom-ami">AWS custom AMI</h3>
 
-<p>To create, upload the custom image is better to doing in US East (N. Virginia),
-once you have test your image and are happy with it you can copy it to other AWS
-zones.</p>
+<p>To create, upload the custom image is recommended to doit in US East (N.
+Virginia), for now, seems to be the only region where custom AMI&rsquo;s could be
+uploaded, once you have tested your image and are happy with it, you can copy it
+to other AWS zones.</p>
 
                 </section>
             </article>
