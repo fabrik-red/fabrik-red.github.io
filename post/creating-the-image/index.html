@@ -163,7 +163,12 @@ fetch https://rawgit.com/fabrik-red/images/master/zfs.sh -o /fabrik/zfs.sh
 sh zfs.sh
 </code></pre>
 
-<p>After finish a <a href="https://fabrik.yotta.cloud/file/yotta-cloud/disk.tar.gz">disk.raw</a> will be created and can be used as a base image.</p>
+<p>After finish a
+<a href="https://fabrik.yotta.cloud/file/yotta-cloud/disk.tar.gz">disk.raw</a> will be
+created and can be used as a base image.</p>
+
+<p>If the image is booting next step is to resize it and claim the extra available
+disk space: <a href="/post/zfs-resize">resize ZFS</a>.</p>
 
 <h3 id="aws-custom-ami">AWS custom AMI</h3>
 
