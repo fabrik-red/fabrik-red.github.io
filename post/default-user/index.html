@@ -8,7 +8,7 @@
 		<meta name="description" content="FreeBSD jails factory">
 		<meta name="keywords" content="freebsd, jails, containers, zfs">
 		<meta name="generator" content="Hugo 0.20.7" />
-		<title>test &middot; fabrik</title>
+		<title>Default username, password &middot; fabrik</title>
         <link rel="apple-touch-icon" sizes="57x57" href="https://fabrik.red/images/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="https://fabrik.red/images/apple-icon-60x60.png">
         <link rel="apple-touch-icon" sizes="72x72" href="https://fabrik.red/images/apple-icon-72x72.png">
@@ -57,70 +57,49 @@
         <section id="wrapper">
             <article class="post">
                 <header>
-                    <h1>test</h1>
+                    <h1>Default username, password</h1>
                     <h2 class="headline">
                     <br>
+                    
+                    
+                        
+                            <a href="https://fabrik.red/tags/login">login</a>
+                        
+                            <a href="https://fabrik.red/tags/devops">devops</a>
+                        
+                    
                     
                     </h2>
                 </header>
                 <section id="post-body">
-                    
+                    <p><strong>devops</strong> is the only username created at boot time (<a href="https://www.freebsd.org/cgi/man.cgi?query=rc&amp;sektion=8"><code>firstboot</code></a>)
+it has no password and always will try to obtain a new ssh public key from <a href="https://ssh-keys.online/new.keys">ssh-keys.online</a></p>
 
-<h1 id="draft">DRAFT</h1>
+<p>If the instance is been used in <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html">AWS &ldquo;key pairs&rdquo;</a>
+it will also try to fetch the public key selected when creating the image.</p>
 
-<p>Download the image: <a href="https://fabrik.yotta.cloud/file/yotta-cloud/disk.tar.gz">disk.tar.gz</a></p>
+<p>One the instance is up an running try to login:</p>
 
-<p>The image works in AWS, GCE, and other providers that allow custom images like
-<a href="https://www.vultr.com/">vultr.com</a> or <a href="https://www.netcup.eu/">netcup</a> or
-locally by using <a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a></p>
-
-<p>The advantage of using <a href="https://cloud.google.com/compute/">GCE google compute engine</a>
-is that the image can be uploaded compressed <code>tar.gz</code> for other providers needs
-to be uncompressed and upload the plain 2GB <code>disk.raw</code>.</p>
-
-<blockquote>
-<p>Because of this the image is just created using 2GB and later needs to be expanded.</p>
-</blockquote>
-
-<p>To test in Virtualbox the <code>disk.raw</code> needs to be converted to <code>VDI</code> format:</p>
-
-<pre><code>$ VBoxManage convertfromraw disk.raw disk.vdi --format VDI
+<pre><code>$ ssh -l devops -i /path/to/private/ssh.key X.X.X.X
 </code></pre>
 
-<p>The image size is 2GB, once the image is in <code>VDI</code> format it can be resized:</p>
+<p>Or</p>
 
-<pre><code>$ VBoxManage modifyhd ec2.vdi --resize 20480
+<pre><code>$ssh devops@X.X.X.X -i /path/to/private/ssh.key
 </code></pre>
 
 <blockquote>
-<p>20480 will create a 20GB disk</p>
+<p>X.X.X.X is the IP of the server</p>
 </blockquote>
 
-<p>To use the image in VMWARE convert the raw image to <code>vmdk</code>, this can be done by
-installing qemu:</p>
+<p>If the server is not in AWS you will need to fetch the private key from
+<a href="https://ssh-keys.online/private">ssh-keys.online</a>.</p>
 
-<pre><code>$ brew install qemu
-</code></pre>
+<p>Once the server is up and running visit <a href="https://ssh-keys.online/private/X.X.X.X">https://ssh-keys.online/private/X.X.X.X</a>
+in where <code>X.X.X.X</code> is the public IP of your instance, hopefully a private ssh
+key will be printed and is the one should be used for trying to login.</p>
 
-<p>And then:</p>
-
-<pre><code>$ qemu-img convert -f raw -O vmdk disk.raw disk.vmdk
-</code></pre>
-
-<p>If using VMware, virtual disks can be expanded using this ESXi/ESX command:</p>
-
-<pre><code>vmkfstools -X &lt;new size&gt; &lt;virtual disk&gt;.vmdk
-</code></pre>
-
-<p>For example, use this command to grow the virtual disk to 25GB in size:</p>
-
-<pre><code>vmkfstools -X 25g /vmfs/volumes/xxxx/vmname/vmname.vmdk
-</code></pre>
-
-<h3 id="resize-zfs">resize ZFS</h3>
-
-<p>Once the image has been installed and the system is up and running, the disk
-should be expanded, see <a href="/post/zfs-resize">resize ZFS</a> for more details.</p>
+<p>In case you have access to a terminal or VNC, the user <strong>root</strong> can be used.</p>
 
                 </section>
             </article>
@@ -128,7 +107,7 @@ should be expanded, see <a href="/post/zfs-resize">resize ZFS</a> for more detai
                 
                     
                 <section id="sharing">
-                    <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2ffabrik.red%2fpost%2ftest%2f - test "><span class="icon-twitter"> Tweet</span></a>
+                    <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2ffabrik.red%2fpost%2fdefault-user%2f - Default%20username%2c%20password "><span class="icon-twitter"> Tweet</span></a>
 
 <a class="facebook" href="#" onclick="
     window.open(
@@ -144,9 +123,9 @@ should be expanded, see <a href="/post/zfs-resize">resize ZFS</a> for more detai
             <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'fabrik-red';
-    var disqus_identifier = 'https:\/\/fabrik.red\/post\/test\/';
-    var disqus_title = 'test';
-    var disqus_url = 'https:\/\/fabrik.red\/post\/test\/';
+    var disqus_identifier = 'https:\/\/fabrik.red\/post\/default-user\/';
+    var disqus_title = 'Default username, password';
+    var disqus_url = 'https:\/\/fabrik.red\/post\/default-user\/';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

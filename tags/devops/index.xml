@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Devops on fabrik</title>
+    <link>https://fabrik.red/tags/devops/</link>
+    <description>Recent content in Devops on fabrik</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright> </copyright>
+    <lastBuildDate>Sun, 07 May 2017 17:54:59 +0200</lastBuildDate>
+    
+	<atom:link href="https://fabrik.red/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Default username, password</title>
+      <link>https://fabrik.red/post/default-user/</link>
+      <pubDate>Sun, 07 May 2017 17:54:59 +0200</pubDate>
+      
+      <guid>https://fabrik.red/post/default-user/</guid>
+      <description>devops is the only username created at boot time (firstboot) it has no password and always will try to obtain a new ssh public key from ssh-keys.online
+If the instance is been used in AWS &amp;ldquo;key pairs&amp;rdquo; it will also try to fetch the public key selected when creating the image.
+One the instance is up an running try to login:
+$ ssh -l devops -i /path/to/private/ssh.key X.X.X.X  Or</description>
+    </item>
+    
+  </channel>
+</rss>
