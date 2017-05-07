@@ -45,5 +45,14 @@ One the instance is up an running try to login:
 $ ssh -l devops -i /path/to/private/ssh.key X.X.X.X  Or</description>
     </item>
     
+    <item>
+      <title>resize ZFS</title>
+      <link>https://fabrik.red/post/zfs-resize/</link>
+      <pubDate>Sun, 07 May 2017 10:16:17 +0200</pubDate>
+      
+      <guid>https://fabrik.red/post/zfs-resize/</guid>
+      <description>TODO</description>
+    </item>
+    
   </channel>
 </rss>
