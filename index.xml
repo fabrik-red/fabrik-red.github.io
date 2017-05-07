@@ -22,27 +22,27 @@
     </item>
     
     <item>
-      <title>Default username, password</title>
-      <link>https://fabrik.red/post/default-user/</link>
-      <pubDate>Sun, 07 May 2017 15:29:59 +0200</pubDate>
-      
-      <guid>https://fabrik.red/post/default-user/</guid>
-      <description>devops is the only username created at boot time (firstboot) it has no password and always will try to obtain a new ssh public key from ssh-keys.online
-If the instance is been used in AWS &amp;ldquo;key pairs&amp;rdquo; it will also try to fetch the public key selected when creating the image.
-One the instance is up an running try to login:
-$ ssh -l devops -i /path/to/private/ssh.key X.X.X.X  Or</description>
-    </item>
-    
-    <item>
-      <title>test</title>
+      <title>test (install disk.raw)</title>
       <link>https://fabrik.red/post/test/</link>
-      <pubDate>Tue, 13 Dec 2016 10:06:46 +0100</pubDate>
+      <pubDate>Sun, 07 May 2017 15:29:59 +0200</pubDate>
       
       <guid>https://fabrik.red/post/test/</guid>
       <description>DRAFT Download the image: disk.tar.gz
 The image works in AWS, GCE, and other providers that allow custom images like vultr.com or netcup or locally by using VirtualBox
 The advantage of using GCE google compute engine is that the image can be uploaded compressed tar.gz for other providers needs to be uncompressed and upload the plain 2GB disk.raw.
  Because of this the image is just created using 2GB and later needs to be expanded.</description>
+    </item>
+    
+    <item>
+      <title>Default username, password</title>
+      <link>https://fabrik.red/post/default-user/</link>
+      <pubDate>Sun, 07 May 2017 15:28:59 +0200</pubDate>
+      
+      <guid>https://fabrik.red/post/default-user/</guid>
+      <description>devops is the only username created at boot time (firstboot) it has no password and always will try to obtain a new ssh public key from ssh-keys.online
+If the instance is been used in AWS &amp;ldquo;key pairs&amp;rdquo; it will also try to fetch the public key selected when creating the image.
+One the instance is up an running try to login:
+$ ssh -l devops -i /path/to/private/ssh.key X.X.X.X  Or</description>
     </item>
     
     <item>
