@@ -105,7 +105,7 @@ used for creating the new AMI.</p>
 
 <p>Once the instance is up and running, update the sources by doing:</p>
 
-<pre><code class="language-sh">$ svnlite co svn://svn.freebsd.org/base/stable/11 /usr/src
+<pre><code class="language-shell"># svnlite co svn://svn.freebsd.org/base/stable/11 /usr/src
 </code></pre>
 
 <p>In this case we are using FreeBSD 11</p>
@@ -114,7 +114,7 @@ used for creating the new AMI.</p>
 
 <p>Edit file <code>/etc/make.conf</code> and if required the <code>src.conf</code>, to avoid any conflict with an existing configuration file we will use <a href="https://github.com/fabrik-red/images/blob/master/src.conf">/etc/fabrik-src.conf</a> and <code>/etc/src-jail.conf</code> for the jails.</p>
 
-<pre><code class="language-sh">$ fetch --no-verify-peer https://rawgit.com/fabrik-red/images/master/src.conf -o /etc/fabrik-src.conf
+<pre><code class="language-shell"># fetch --no-verify-peer https://rawgit.com/fabrik-red/images/master/src.conf -o /etc/fabrik-src.conf
 
 $ fetch --no-verify-peer https://rawgit.com/fabrik-red/images/master/src-jail.conf -o /etc/src-jail.conf
 
