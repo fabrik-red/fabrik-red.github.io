@@ -70,10 +70,21 @@
 
 <p>Download the image: <a href="https://fabrik.yotta.cloud/file/yotta-cloud/disk.tar.gz">disk.tar.gz</a></p>
 
-<p>The image can be uploaded directly to AWS, Google compute engine or to test it within
-Virtualbox need to convert it to <code>VDI</code> format:</p>
+<p>The image works in AWS, GCE, and other providers that allow custom images like
+<a href="https://www.vultr.com/">vultr.com</a> or <a href="https://www.netcup.eu/">netcup</a> or
+locally by using <a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a></p>
 
-<pre><code>$ VBoxManage convertfromraw disk.raw ec2.vdi --format VDI
+<p>The advantage of using <a href="https://cloud.google.com/compute/">GCE google compute engine</a>
+is that the image can be uploaded compressed <code>tar.gz</code> for other providers needs
+to be uncompressed and upload the plain 2GB <code>disk.raw</code>.</p>
+
+<blockquote>
+<p>Because of this the image is just created using 2GB and later needs to be expanded.</p>
+</blockquote>
+
+<p>To test in Virtualbox the <code>disk.raw</code> needs to be converted to <code>VDI</code> format:</p>
+
+<pre><code>$ VBoxManage convertfromraw disk.raw disk.vdi --format VDI
 </code></pre>
 
 <p>The image size is 2GB, once the image is in <code>VDI</code> format it can be resized:</p>
@@ -85,7 +96,31 @@ Virtualbox need to convert it to <code>VDI</code> format:</p>
 <p>20480 will create a 20GB disk</p>
 </blockquote>
 
-<p>Once the image has been booted it can be resized within zfs: <a href="https://nbari.com/post/zfs/">https://nbari.com/post/zfs/</a></p>
+<p>To use the image in VMWARE convert the raw image to <code>vmdk</code>, this can be done by
+installing qemu:</p>
+
+<pre><code>$ brew install qemu
+</code></pre>
+
+<p>And then:</p>
+
+<pre><code>$ qemu-img convert -f raw -O vmdk disk.raw disk.vmdk
+</code></pre>
+
+<p>If using VMware, virtual disks can be expanded using this ESXi/ESX command:</p>
+
+<pre><code>vmkfstools -X &lt;new size&gt; &lt;virtual disk&gt;.vmdk
+</code></pre>
+
+<p>For example, use this command to grow the virtual disk to 25GB in size:</p>
+
+<pre><code>vmkfstools -X 25g /vmfs/volumes/xxxx/vmname/vmname.vmdk
+</code></pre>
+
+<h2 id="resize-zfs">resize ZFS</h2>
+
+<p>Once the image has been installed and the system is up and running, the disk
+should be expanded, see <a href="/post/zfs-resize">resize ZFS</a> for more details.</p>
 
                 </section>
             </article>
