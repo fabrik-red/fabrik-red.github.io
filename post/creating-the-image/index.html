@@ -105,7 +105,7 @@ used for creating the new AMI.</p>
 
 <p>Once the instance is up and running, update the sources by doing:</p>
 
-<pre><code class="language-shell"># svnlite co svn://svn.freebsd.org/base/stable/11 /usr/src
+<pre><code># svnlite co svn://svn.freebsd.org/base/stable/11 /usr/src
 </code></pre>
 
 <p>In this case we are using FreeBSD 11</p>
@@ -114,7 +114,7 @@ used for creating the new AMI.</p>
 
 <p>Edit file <code>/etc/make.conf</code> and if required the <code>src.conf</code>, to avoid any conflict with an existing configuration file we will use <a href="https://github.com/fabrik-red/images/blob/master/src.conf">/etc/fabrik-src.conf</a> and <code>/etc/src-jail.conf</code> for the jails.</p>
 
-<pre><code class="language-shell"># fetch --no-verify-peer https://rawgit.com/fabrik-red/images/master/src.conf -o /etc/fabrik-src.conf
+<pre><code># fetch --no-verify-peer https://rawgit.com/fabrik-red/images/master/src.conf -o /etc/fabrik-src.conf
 
 # fetch --no-verify-peer https://rawgit.com/fabrik-red/images/master/src-jail.conf -o /etc/src-jail.conf
 
@@ -123,35 +123,35 @@ used for creating the new AMI.</p>
 
 <p>The kernel:</p>
 
-<pre><code class="language-shell"># fetch --no-verify-peer https://rawgit.com/fabrik-red/images/master/fabrik.kernel -o /usr/src/sys/amd64/conf/FABRIK
+<pre><code># fetch --no-verify-peer https://rawgit.com/fabrik-red/images/master/fabrik.kernel -o /usr/src/sys/amd64/conf/FABRIK
 </code></pre>
 
 <h3 id="build-jx-j36">Build -jX <code>-j36</code></h3>
 
 <p>Build everything under <code>/fabrik</code>:</p>
 
-<pre><code class="language-shell"># mkdir -p /fabrik/host
+<pre><code># mkdir -p /fabrik/host
 # mkdir /fabrik/jail
 </code></pre>
 
 <p>Change to the <code>/usr/src</code> directory before building:</p>
 
-<pre><code class="language-shell"># cd /usr/src
+<pre><code># cd /usr/src
 </code></pre>
 
 <p>The world:</p>
 
-<pre><code class="language-shell"># env MAKEOBJDIRPREFIX=/fabrik/host/obj SRCCONF=/etc/fabrik-src.conf make -j36 buildworld
+<pre><code># env MAKEOBJDIRPREFIX=/fabrik/host/obj SRCCONF=/etc/fabrik-src.conf make -j36 buildworld
 </code></pre>
 
 <p>The kernel:</p>
 
-<pre><code class="language-shell"># env MAKEOBJDIRPREFIX=/fabrik/host/obj SRCCONF=/etc/fabrik-src.conf make -j36 buildkernel KERNCONF=FABRIK
+<pre><code># env MAKEOBJDIRPREFIX=/fabrik/host/obj SRCCONF=/etc/fabrik-src.conf make -j36 buildkernel KERNCONF=FABRIK
 </code></pre>
 
 <p>The world for the jail:</p>
 
-<pre><code class="language-shell"># env MAKEOBJDIRPREFIX=/fabrik/jail/obj SRCCONF=/etc/src-jail.conf make -j36 buildworld
+<pre><code># env MAKEOBJDIRPREFIX=/fabrik/jail/obj SRCCONF=/etc/src-jail.conf make -j36 buildworld
 </code></pre>
 
 <p>Depending on how many cores set the value of <code>-jN</code> in this case <code>N</code> is 36 therefore we use <code>-j36</code></p>
@@ -160,7 +160,7 @@ used for creating the new AMI.</p>
 
 <p>Create the image by running the <a href="https://rawgit.com/fabrik-red/images/master/zfs.sh">zfs.sh</a> script:</p>
 
-<pre><code class="language-shell"># cd /fabrik
+<pre><code># cd /fabrik
 
 # fetch --no-verify-peer https://rawgit.com/fabrik-red/images/master/zfs.sh -o /fabrik/zfs.sh
 
@@ -185,12 +185,12 @@ to other AWS zones.</p>
 
 <p>All in one script doing all the steps: <a href="https://github.com/fabrik-red/images/blob/master/fabrik.sh">fabrik.sh</a></p>
 
-<pre><code class="language-shell"># fetch --no-verify-peer https://rawgit.com/fabrik-red/images/master/fabrik.sh -o /fabrik.sh
+<pre><code># fetch --no-verify-peer https://rawgit.com/fabrik-red/images/master/fabrik.sh -o /fabrik.sh
 </code></pre>
 
 <p>And next just execute the script like <strong>root</strong>:</p>
 
-<pre><code class="language-shell"># sh fabrik.sh
+<pre><code># sh fabrik.sh
 </code></pre>
 
                 </section>
