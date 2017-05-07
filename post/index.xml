@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright> </copyright>
-    <lastBuildDate>Sun, 07 May 2017 17:54:59 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 07 May 2017 15:29:59 +0200</lastBuildDate>
     
 	<atom:link href="https://fabrik.red/post/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>Default username, password</title>
       <link>https://fabrik.red/post/default-user/</link>
-      <pubDate>Sun, 07 May 2017 17:54:59 +0200</pubDate>
+      <pubDate>Sun, 07 May 2017 15:29:59 +0200</pubDate>
       
       <guid>https://fabrik.red/post/default-user/</guid>
       <description>devops is the only username created at boot time (firstboot) it has no password and always will try to obtain a new ssh public key from ssh-keys.online
