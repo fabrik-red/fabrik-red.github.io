@@ -61,10 +61,128 @@
                     <h2 class="headline">
                     <br>
                     
+                    
+                        
+                            <a href="https://fabrik.red/tags/zfs">zfs</a>
+                        
+                            <a href="https://fabrik.red/tags/freebsd">freebsd</a>
+                        
+                            <a href="https://fabrik.red/tags/raw">raw</a>
+                        
+                            <a href="https://fabrik.red/tags/image">image</a>
+                        
+                    
+                    
                     </h2>
                 </header>
                 <section id="post-body">
-                    <p>TODO</p>
+                    
+
+<p>After booting the ZFS pool need to be increased:</p>
+
+<pre><code>$ gpart show da0
+</code></pre>
+
+<p>Example of output:</p>
+
+<pre><code class="language-sh">root@/:~ # gpart show
+=&gt;       40  503316400  da0  GPT  (240G)
+         40       1024    1  freebsd-boot  (512K)
+       1064    2097152    2  freebsd-swap  (1.0G)
+    2098216        984       - free -  (492K)
+    2099200    2093056    3  freebsd-zfs  (1.0G)
+    4192256  499124184       - free -  (1.0M)
+</code></pre>
+
+<p>Then type <code>gpart recover da0</code>:</p>
+
+<pre><code>$ gpart recover da0
+da0 recovered
+</code></pre>
+
+<p>And next resize <code>gpart resize -i 3 da0</code>:</p>
+
+<pre><code>$ gpart resize -i 3 da0
+da0 resized
+</code></pre>
+
+<blockquote>
+<p>-i 3,  3 is the freebsd-zfs</p>
+</blockquote>
+
+<p>After resizing:</p>
+
+<pre><code class="language-sh">root@/:~ # gpart show
+=&gt;       40  503316400  da0  GPT  (240G)
+         40       1024    1  freebsd-boot  (512K)
+       1064    2097152    2  freebsd-swap  (1.0G)
+    2098216        984       - free -  (492K)
+    2099200  501217240    3  freebsd-zfs  (239G)
+</code></pre>
+
+<p>Get zpool information by typing:</p>
+
+<pre><code>$ zdb
+</code></pre>
+
+<p>Find the children guid from the output:</p>
+
+<pre><code>zroot -&gt; vdev_tree -&gt; children[0] -&gt; guid
+</code></pre>
+
+<pre><code class="language-sh">root@:/raw # zdb
+zroot:
+    version: 5000
+    name: 'zroot'
+    state: 0
+    txg: 422
+    pool_guid: 5388488397555579451
+    hostid: 4037738314
+    hostname: ''
+    com.delphix:has_per_vdev_zaps
+    vdev_children: 1
+    vdev_tree:
+        type: 'root'
+        id: 0
+        guid: 5388488397555579451
+        create_txg: 4
+        children[0]:
+            type: 'disk'
+            id: 0
+            guid: 2304114010935459478
+            path: '/dev/gpt/disk0'
+            whole_disk: 1
+            metaslab_array: 37
+            metaslab_shift: 24
+            ashift: 12
+            asize: 8584429568
+            is_log: 0
+            create_txg: 4
+            com.delphix:vdev_zap_leaf: 35
+            com.delphix:vdev_zap_top: 36
+    features_for_read:
+        com.delphix:hole_birth
+        com.delphix:embedded_data
+</code></pre>
+
+<p>Resize the pool:</p>
+
+<pre><code>$ zpool online -e zroot 2304114010935459478
+</code></pre>
+
+<p>Check the pool:</p>
+
+<pre><code class="language-sh">root@:/raw # zpool list
+NAME    SIZE  ALLOC   FREE  EXPANDSZ   FRAG    CAP  DEDUP  HEALTH  ALTROOT
+zroot  7.98G   258M  7.73G         -     2%     3%  1.00x  ONLINE  -
+</code></pre>
+
+<h2 id="readonly-off">readonly=off</h2>
+
+<p>Set the <code>/</code> to readonly off:</p>
+
+<pre><code>$ zfs set readonly=off zroot/ROOT/default
+</code></pre>
 
                 </section>
             </article>
@@ -152,6 +270,13 @@
     
         
         <li>
+            <a href="https://fabrik.red/tags/freebsd/">Freebsd</a>
+        </li>
+        
+   
+    
+        
+        <li>
             <a href="https://fabrik.red/tags/image/">Image</a>
         </li>
         
@@ -160,13 +285,6 @@
         
         <li>
             <a href="https://fabrik.red/tags/login/">Login</a>
-        </li>
-        
-   
-    
-        
-        <li>
-            <a href="https://fabrik.red/post/">Posts</a>
         </li>
         
    
