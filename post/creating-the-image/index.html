@@ -115,7 +115,9 @@ used for creating the new AMI.</p>
 <p>Edit file <code>/etc/make.conf</code> and if required the <code>src.conf</code>, to avoid any conflict with an existing configuration file we will use <a href="https://github.com/fabrik-red/images/blob/master/src.conf">/etc/fabrik-src.conf</a> and <code>/etc/src-jail.conf</code> for the jails.</p>
 
 <pre><code class="language-sh">$ fetch --no-verify-peer https://rawgit.com/fabrik-red/images/master/src.conf -o /etc/fabrik-src.conf
+
 $ fetch --no-verify-peer https://rawgit.com/fabrik-red/images/master/src-jail.conf -o /etc/src-jail.conf
+
 $ fetch --no-verify-peer https://rawgit.com/fabrik-red/images/master/make.conf -o /etc/make.conf
 </code></pre>
 
@@ -159,7 +161,9 @@ $ mkdir /fabrik/jail
 <p>Create the image by running the <a href="https://rawgit.com/fabrik-red/images/master/zfs.sh">zfs.sh</a> script:</p>
 
 <pre><code class="language-sh">$ cd /fabrik
+
 $ fetch --no-verify-peer https://rawgit.com/fabrik-red/images/master/zfs.sh -o /fabrik/zfs.sh
+
 $ sh zfs.sh
 </code></pre>
 
