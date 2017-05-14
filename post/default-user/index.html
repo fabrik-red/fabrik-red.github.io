@@ -72,37 +72,10 @@
                     </h2>
                 </header>
                 <section id="post-body">
-                    <p><strong>devops</strong> is the only username created at boot time (<a href="https://www.freebsd.org/cgi/man.cgi?query=rc&amp;sektion=8"><code>firstboot</code></a>)
-it has no password and always will try to obtain a new ssh public key from <a href="https://ssh-keys.online/new.keys">ssh-keys.online</a></p>
+                    <p><strong>devops</strong> is the only username created with password <code>fabrik</code>.</p>
 
-<p>If the instance is been used in <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html">AWS &ldquo;key pairs&rdquo;</a>
-it will also try to fetch the public key selected when creating the image.</p>
-
-<p>One the instance is up an running try to login:</p>
-
-<pre><code>$ ssh -l devops -i /path/to/private/ssh.key X.X.X.X
-</code></pre>
-
-<p>Or</p>
-
-<pre><code>$ ssh devops@X.X.X.X -i /path/to/private/ssh.key
-</code></pre>
-
-<blockquote>
-<p>X.X.X.X is the IP of the server</p>
-</blockquote>
-
-<p>If the server is not in AWS you will need to fetch the private key from
-<a href="https://ssh-keys.online/private">ssh-keys.online</a>.</p>
-
-<p>Once the server is up and running visit <a href="https://ssh-keys.online/private/X.X.X.X">https://ssh-keys.online/private/X.X.X.X</a>
-in where <code>X.X.X.X</code> is the public IP of your instance, hopefully a private ssh
-key will be printed and is the one should be used for trying to login.</p>
-
-<p>In case you have access to a terminal or VNC, the user <strong>root</strong> can be used.</p>
-
-<p>The instance is a default &ldquo;raw&rdquo; installation so no extra packages are installed
-or users created, besides the user <strong>devops</strong>.</p>
+<p>After verifying that image is booting and that can logging, change the password
+or configure ssh to only allow access by using ssh keys.</p>
 
                 </section>
             </article>
