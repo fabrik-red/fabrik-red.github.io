@@ -78,8 +78,6 @@
 
 <h1 id="creating-the-image-disk-raw">Creating the image (disk.raw)</h1>
 
-<p>Download: <a href="https://fabrik.yotta.cloud/file/yotta-cloud/disk.tar.gz">disk.raw</a></p>
-
 <p>The fastest way of doing this (less than 1 hour) is to use AWS and
 chose the <a href="https://aws.amazon.com/ec2/instance-types/">c4.8xlarge</a> instance,
 at the moment of writhing this, is an instance with 36 vCPU / 60 RAM, the
@@ -92,12 +90,7 @@ all this in less than 1 hour.</p>
 <p>buildworld &amp; buildkernel within a c4.8xlarge can be done in less than 7min.</p>
 </blockquote>
 
-<h3 id="tl-dr-use-the">tl;dr Use the</h3>
-
-<p><a href="https://github.com/fabrik-red/images/blob/master/fabrik.sh">fabrik.sh</a> to
-compile/create your own <strong>disk.raw</strong></p>
-
-<h3 id="booting-the-instance">Booting the instance</h3>
+<h3 id="creating-the-image-within-aws">Creating the image within AWS</h3>
 
 <p>Boot using an existing <a href="https://aws.amazon.com/marketplace/seller-profile?id=4a931b8a-95f6-4bb2-8b7e-53507851c459">FreeBSD AMI</a></p>
 
@@ -108,97 +101,28 @@ compile/create your own <strong>disk.raw</strong></p>
 <p>The idea is to have a working FreeBSD AMI up and running the one will be just
 used for creating the new AMI.</p>
 
-<h3 id="svnlite">svnlite</h3>
-
-<p>Once the instance is up and running, update the sources by doing:</p>
-
-<pre><code class="language-sh">svnlite co svn://svn.freebsd.org/base/stable/11 /usr/src
-</code></pre>
-
-<p>In this case we are using FreeBSD 11</p>
-
-<h3 id="conf-kernel">*.conf &amp; kernel</h3>
-
-<p>Edit file <code>/etc/make.conf</code> and if required the <code>src.conf</code>, to avoid any conflict with an existing configuration file we will use <a href="https://github.com/fabrik-red/images/blob/master/src.conf">/etc/fabrik-src.conf</a> and <code>/etc/src-jail.conf</code> for the jails.</p>
-
-<pre><code class="language-sh">fetch --no-verify-peer https://rawgit.com/fabrik-red/images/master/src.conf -o /etc/fabrik-src.conf
-
-fetch --no-verify-peer https://rawgit.com/fabrik-red/images/master/src-jail.conf -o /etc/src-jail.conf
-
-fetch --no-verify-peer https://rawgit.com/fabrik-red/images/master/make.conf -o /etc/make.conf
-</code></pre>
-
-<p>The kernel:</p>
-
-<pre><code class="language-sh">fetch --no-verify-peer https://rawgit.com/fabrik-red/images/master/fabrik.kernel -o /usr/src/sys/amd64/conf/FABRIK
-</code></pre>
-
-<h3 id="build-jx-j36">Build -jX <code>-j36</code></h3>
-
-<p>Build everything under <code>/fabrik</code>:</p>
-
-<pre><code class="language-sh">mkdir -p /fabrik/host
-mkdir /fabrik/jail
-</code></pre>
-
-<p>Change to the <code>/usr/src</code> directory before building:</p>
-
-<pre><code class="language-sh">cd /usr/src
-</code></pre>
-
-<p>The world:</p>
-
-<pre><code class="language-sh">env MAKEOBJDIRPREFIX=/fabrik/host/obj SRCCONF=/etc/fabrik-src.conf make -j36 buildworld
-</code></pre>
-
-<p>The kernel:</p>
-
-<pre><code class="language-sh">env MAKEOBJDIRPREFIX=/fabrik/host/obj SRCCONF=/etc/fabrik-src.conf make -j36 buildkernel KERNCONF=FABRIK
-</code></pre>
-
-<p>The world for the jail:</p>
-
-<pre><code class="language-sh">env MAKEOBJDIRPREFIX=/fabrik/jail/obj SRCCONF=/etc/src-jail.conf make -j36 buildworld
-</code></pre>
-
-<p>Depending on how many cores set the value of <code>-jN</code> in this case <code>N</code> is 36 therefore we use <code>-j36</code></p>
-
-<h3 id="zfs-sh">zfs.sh</h3>
-
-<p>Create the image by running the <a href="https://rawgit.com/fabrik-red/images/master/zfs.sh">zfs.sh</a> script:</p>
-
-<pre><code class="language-sh">cd /fabrik
-
-fetch --no-verify-peer https://rawgit.com/fabrik-red/images/master/zfs.sh -o /fabrik/zfs.sh
-
-sh zfs.sh
-</code></pre>
-
-<p>After finish a
-<a href="https://fabrik.yotta.cloud/file/yotta-cloud/disk.tar.gz">disk.raw</a> will be
-created and can be used as a base image.</p>
-
-<p>If the image is booting next step is to resize it and claim the extra available
-disk space: <a href="/post/zfs-resize">resize ZFS</a>.</p>
-
-<h3 id="aws-custom-ami">AWS custom AMI</h3>
-
-<p>To create, upload the custom image is recommended to doit in US East (N.
+<p>To create, upload the custom image is recommended to do it in US East (N.
 Virginia), for now, seems to be the only region where custom AMI&rsquo;s could be
 uploaded, once you have tested your image and are happy with it, you can copy it
 to other AWS zones.</p>
 
 <h3 id="fabrik-sh">fabrik.sh</h3>
 
-<p>All in one script doing all the steps: <a href="https://github.com/fabrik-red/images/blob/master/fabrik.sh">fabrik.sh</a></p>
+<p>Login to your FreeBSD server (AWS, VirtualBox, etc) and fetch the <code>fabrik.sh</code> script:</p>
 
 <pre><code class="language-sh">fetch --no-verify-peer https://rawgit.com/fabrik-red/images/master/fabrik.sh -o /fabrik.sh
 </code></pre>
 
-<p>And next just execute the script like <strong>root</strong>:</p>
+<p>Run the script, preferably under a tmux/screen session just in case, since it
+could take some minutes, hours to finish.</p>
 
-<pre><code class="language-sh">sh fabrik.sh
+<pre><code class="language-sh">sh /fabrik.sh
 </code></pre>
+
+<p>The script behind scenes will update the sources, build the world,
+kernel and custom world for the base jails, once done it will create a
+<a href="https://fabrik.yotta.cloud/file/yotta-cloud/disk.tar.gz">disk.raw</a> located in
+<code>/fabrik/disk.raw</code></p>
 
                 </section>
             </article>
