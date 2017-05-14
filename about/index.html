@@ -68,21 +68,30 @@
 
 <h2 id="why">Why ?</h2>
 
-<p>FreeBSD is a beast. Unfortunately few are capable of taking advantage all the
-benefits and capabilities available within it. It is a fact that for having a
-proper setup some work needs to be done. <em>you don&rsquo;t get diamonds by just putting
-carbon in the microwave and wait for a couple of minutes.</em></p>
+<p>Unfortunately few know and are capable of taking advantage all the benefits
+and capabilities available within FreeBSD + ZFS + jails. It is a fact that for
+having a proper setup some work needs to be done.</p>
+
+<blockquote>
+<p><em>you don&rsquo;t get diamonds by just putting carbon in the microwave and wait for a couple of minutes.</em></p>
+</blockquote>
 
 <p>The idea behind <strong>Fabrik</strong> is to simplify the initial/bootstrap work (custom
 kernel + ZFS) and come with a ready to work image that can be used out of the
 box and create jails on demand.</p>
 
-<p>The project consists of two main stages, the image (<a href="/post/test">disk.raw</a>) wich
+<p>The project consists of two main stages, the image (<a href="/post/test">disk.raw</a>) which
 is a FreeBSD + root ZFS + jails and the application <strong>fabrik</strong> that ends been a
 wrapper of tools like jail, zfs, zpool, etc.</p>
 
 <p>The application <strong>fabrik</strong> is at an early development stage, but the image is
-currently working you can give a try: <a href="/post/test">disk.raw</a></p>
+currently working, you can give a try: <a href="/post/test">disk.raw</a></p>
+
+<p>The image out of the box contains a working jail (172.16.13.2), to access to it
+from the main host type:</p>
+
+<pre><code># jexec 10 csh
+</code></pre>
 
                 </section>
             </article>
