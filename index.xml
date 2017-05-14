@@ -63,7 +63,7 @@ root@/:~ # gpart show =&amp;gt; 40 503316400 da0 GPT (240G) 40 1024 1 freebsd-bo
       
       <guid>https://fabrik.red/about/</guid>
       <description>What is Fabrik ? A tool for creating and managing jails.
-Why ? Unfortunately few know and are capable of taking advantage all the benefits and capabilities available within FreeBSD + ZFS + jails. It is a fact that for having a proper setup some work needs to be done.
+Why ? Unfortunately, few know and are capable of taking advantage of all the benefits and capabilities available within FreeBSD + ZFS + jails. It is a fact that for having a proper setup some work needs to be done.
  you don&amp;rsquo;t get diamonds by just putting carbon in the microwave and wait for a couple of minutes.</description>
     </item>
     
