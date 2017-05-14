@@ -19,7 +19,7 @@
       
       <guid>https://fabrik.red/post/creating-the-image/</guid>
       <description>Creating the image (disk.raw) Download: disk.raw
-The fastest way of doing this (less than 1 hour &amp;ldquo;7min&amp;rdquo;) is to use AWS and chose the c4.8xlarge instance, at the moment of writhing this, is an instance with 36 vCPU / 60 RAM, the important thing to check for, is the amount of cores not really the memory. After finishing building, stop or terminate the build instance, mainly because is a very expensive instance and in best scenario you just want to do all this in less than 1 hour.</description>
+The fastest way of doing this (less than 1 hour) is to use AWS and chose the c4.8xlarge instance, at the moment of writhing this, is an instance with 36 vCPU / 60 RAM, the important thing to check for, is the amount of cores not really the memory. After finishing building, stop or terminate the build instance, mainly because is a very expensive instance and in best scenario you just want to do all this in less than 1 hour.</description>
     </item>
     
   </channel>

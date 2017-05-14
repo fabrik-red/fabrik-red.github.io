@@ -80,7 +80,7 @@
 
 <p>Download: <a href="https://fabrik.yotta.cloud/file/yotta-cloud/disk.tar.gz">disk.raw</a></p>
 
-<p>The fastest way of doing this (less than 1 hour &ldquo;7min&rdquo;) is to use AWS and
+<p>The fastest way of doing this (less than 1 hour) is to use AWS and
 chose the <a href="https://aws.amazon.com/ec2/instance-types/">c4.8xlarge</a> instance,
 at the moment of writhing this, is an instance with 36 vCPU / 60 RAM, the
 important thing to check for, is the amount of cores not really the memory.
@@ -91,6 +91,11 @@ all this in less than 1 hour.</p>
 <blockquote>
 <p>buildworld &amp; buildkernel within a c4.8xlarge can be done in less than 7min.</p>
 </blockquote>
+
+<h3 id="tl-dr-use-the">tl;dr Use the</h3>
+
+<p><a href="https://github.com/fabrik-red/images/blob/master/fabrik.sh">fabrik.sh</a> to
+compile/create your own <strong>disk.raw</strong></p>
 
 <h3 id="booting-the-instance">Booting the instance</h3>
 

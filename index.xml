@@ -19,7 +19,7 @@
       
       <guid>https://fabrik.red/post/creating-the-image/</guid>
       <description>Creating the image (disk.raw) Download: disk.raw
-The fastest way of doing this (less than 1 hour &amp;ldquo;7min&amp;rdquo;) is to use AWS and chose the c4.8xlarge instance, at the moment of writhing this, is an instance with 36 vCPU / 60 RAM, the important thing to check for, is the amount of cores not really the memory. After finishing building, stop or terminate the build instance, mainly because is a very expensive instance and in best scenario you just want to do all this in less than 1 hour.</description>
+The fastest way of doing this (less than 1 hour) is to use AWS and chose the c4.8xlarge instance, at the moment of writhing this, is an instance with 36 vCPU / 60 RAM, the important thing to check for, is the amount of cores not really the memory. After finishing building, stop or terminate the build instance, mainly because is a very expensive instance and in best scenario you just want to do all this in less than 1 hour.</description>
     </item>
     
     <item>
@@ -50,10 +50,10 @@ After verifying that image is booting and that can logging, change the password 
       <pubDate>Sun, 07 May 2017 10:16:17 +0200</pubDate>
       
       <guid>https://fabrik.red/post/zfs-resize/</guid>
-      <description>After booting the ZFS pool need to be increased:
+      <description>The disk.raw automatically on the firstboot will try to resize the disk
+ After booting the ZFS pool need to be increased:
 $ gpart show da0  Example of output:
-root@/:~ # gpart show =&amp;gt; 40 503316400 da0 GPT (240G) 40 1024 1 freebsd-boot (512K) 1064 2097152 2 freebsd-swap (1.0G) 2098216 984 - free - (492K) 2099200 2093056 3 freebsd-zfs (1.0G) 4192256 499124184 - free - (1.0M)  Then type gpart recover da0:
-$ gpart recover da0 da0 recovered  And next resize gpart resize -i 3 da0:</description>
+root@/:~ # gpart show =&amp;gt; 40 503316400 da0 GPT (240G) 40 1024 1 freebsd-boot (512K) 1064 2097152 2 freebsd-swap (1.0G) 2098216 984 - free - (492K) 2099200 2093056 3 freebsd-zfs (1.0G) 4192256 499124184 - free - (1.0M)  Then type gpart recover da0:</description>
     </item>
     
     <item>
