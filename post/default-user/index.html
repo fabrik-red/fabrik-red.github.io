@@ -76,13 +76,17 @@
                     </h2>
                 </header>
                 <section id="post-body">
-                    <p><strong>devops</strong> is the only username created with password <code>fabrik</code>.</p>
+                    
 
-<p>After verifying that image is booting and that can logging, change the password
-or configure ssh to only allow access by using ssh keys.</p>
+<p><strong>devops</strong> is the only username created with password <code>fabrik</code>.</p>
+
+<p>After verifying that image is booting, log in to the instance, change the
+password or configure ssh to only allow access by using ssh keys.</p>
 
 <p>If using AWS or GCE the image will try to fetch the ssh public key on the
 firstboot, and add it to the <code>~/.ssh/authorized_keys</code> file.</p>
+
+<h3 id="gce">GCE</h3>
 
 <p>For GCE this URL is used:</p>
 
@@ -90,6 +94,8 @@ firstboot, and add it to the <code>~/.ssh/authorized_keys</code> file.</p>
 </code></pre>
 
 <p>More info can be found here: <a href="https://cloud.google.com/compute/docs/storing-retrieving-metadata">https://cloud.google.com/compute/docs/storing-retrieving-metadata</a></p>
+
+<h3 id="aws">AWS</h3>
 
 <p>For AWS this URL is used:</p>
 
