@@ -82,12 +82,12 @@ to be uncompressed and upload the plain 2GB <code>disk.raw</code>.</p>
 
 <p>To test in Virtualbox the <code>disk.raw</code> needs to be converted to <code>VDI</code> format:</p>
 
-<pre><code>VBoxManage convertfromraw disk.raw disk.vdi --format VDI
+<pre><code class="language-sh">VBoxManage convertfromraw disk.raw disk.vdi --format VDI
 </code></pre>
 
 <p>The image size is 2GB, once the image is in <code>VDI</code> format it can be resized:</p>
 
-<pre><code>VBoxManage modifyhd disk.vdi --resize 20480
+<pre><code class="language-sh">VBoxManage modifyhd disk.vdi --resize 20480
 </code></pre>
 
 <blockquote>
@@ -99,29 +99,29 @@ to be uncompressed and upload the plain 2GB <code>disk.raw</code>.</p>
 <p>To use the image in VMWARE convert the raw image to <code>vmdk</code>, this can be done by
 installing qemu:</p>
 
-<pre><code>brew install qemu
+<pre><code class="language-sh">brew install qemu
 </code></pre>
 
 <p>And then:</p>
 
-<pre><code>qemu-img convert -f raw -O vmdk disk.raw disk.vmdk
+<pre><code class="language-sh">qemu-img convert -f raw -O vmdk disk.raw disk.vmdk
 </code></pre>
 
 <p>If using VMware, virtual disks can be expanded using this ESXi/ESX command:</p>
 
-<pre><code>vmkfstools -X &lt;new size&gt; &lt;virtual disk&gt;.vmdk
+<pre><code class="language-sh">vmkfstools -X &lt;new size&gt; &lt;virtual disk&gt;.vmdk
 </code></pre>
 
 <p>For example, use this command to grow the virtual disk to 25GB in size:</p>
 
-<pre><code>vmkfstools -X 25g /vmfs/volumes/xxxx/vmname/vmname.vmdk
+<pre><code class="language-sh">vmkfstools -X 25g /vmfs/volumes/xxxx/vmname/vmname.vmdk
 </code></pre>
 
 <h2 id="qcow2">qcow2</h2>
 
 <p>To convert the image from raw to qcow2:</p>
 
-<pre><code>qemu-img convert -f raw -O qcow2 disk.raw disk.qcow2
+<pre><code class="language-sh">qemu-img convert -f raw -O qcow2 disk.raw disk.qcow2
 </code></pre>
 
 <h3 id="resize-zfs">resize ZFS</h3>
