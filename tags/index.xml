@@ -49,6 +49,15 @@
     </item>
     
     <item>
+      <title>Hostname</title>
+      <link>https://fabrik.red/tags/hostname/</link>
+      <pubDate>Fri, 05 May 2017 23:34:16 +0200</pubDate>
+      
+      <guid>https://fabrik.red/tags/hostname/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Image</title>
       <link>https://fabrik.red/tags/image/</link>
       <pubDate>Sun, 07 May 2017 15:30:48 +0200</pubDate>
@@ -67,11 +76,29 @@
     </item>
     
     <item>
+      <title>Mtu</title>
+      <link>https://fabrik.red/tags/mtu/</link>
+      <pubDate>Fri, 05 May 2017 23:34:16 +0200</pubDate>
+      
+      <guid>https://fabrik.red/tags/mtu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Raw</title>
       <link>https://fabrik.red/tags/raw/</link>
       <pubDate>Sun, 07 May 2017 15:30:48 +0200</pubDate>
       
       <guid>https://fabrik.red/tags/raw/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tso</title>
+      <link>https://fabrik.red/tags/tso/</link>
+      <pubDate>Fri, 05 May 2017 23:34:16 +0200</pubDate>
+      
+      <guid>https://fabrik.red/tags/tso/</guid>
       <description></description>
     </item>
     

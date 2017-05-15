@@ -8,7 +8,7 @@
 		<meta name="description" content="FreeBSD jails factory">
 		<meta name="keywords" content="freebsd, jails, containers, zfs">
 		<meta name="generator" content="Hugo 0.20.7" />
-		<title>resize ZFS &middot; fabrik</title>
+		<title>After booting &middot; fabrik</title>
         <link rel="apple-touch-icon" sizes="57x57" href="https://fabrik.red/images/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="https://fabrik.red/images/apple-icon-60x60.png">
         <link rel="apple-touch-icon" sizes="72x72" href="https://fabrik.red/images/apple-icon-72x72.png">
@@ -57,136 +57,119 @@
         <section id="wrapper">
             <article class="post">
                 <header>
-                    <h1>resize ZFS</h1>
+                    <h1>After booting</h1>
                     <h2 class="headline">
                     <br>
                     
                     
                         
-                            <a href="https://fabrik.red/tags/zfs">zfs</a>
+                            <a href="https://fabrik.red/tags/mtu">mtu</a>
                         
-                            <a href="https://fabrik.red/tags/freebsd">freebsd</a>
+                            <a href="https://fabrik.red/tags/hostname">hostname</a>
                         
-                            <a href="https://fabrik.red/tags/raw">raw</a>
-                        
-                            <a href="https://fabrik.red/tags/image">image</a>
+                            <a href="https://fabrik.red/tags/tso">tso</a>
                         
                     
                     
                     </h2>
                 </header>
                 <section id="post-body">
-                    
+                    <p>The image is not tuned, and has only been configured to try boot in as many
+providers as possible, therefore extra adjustments need to be done after
+booting, starting by removing/changing the password for the user <strong>devops</strong></p>
 
-<blockquote>
-<p>The <a href="https://github.com/fabrik-red/images/releases/download/0.1.0/disk.tar.gz">disk.raw</a>
-automatically on the firstboot will try to resize the disk</p>
-</blockquote>
+<p>In case not using GCE the <code>mtu 1460</code> option may be removed from the <code>rc.conf</code>:</p>
 
-<p>After booting the ZFS pool need to be increased:</p>
-
-<pre><code>$ gpart show da0
+<pre><code>ifconfig_DEFAULT=&quot;SYNCDHCP mtu 1460&quot;
 </code></pre>
 
-<p>Example of output:</p>
+<p>To:</p>
 
-<pre><code class="language-sh">root@/:~ # gpart show
-=&gt;       40  503316400  da0  GPT  (240G)
-         40       1024    1  freebsd-boot  (512K)
-       1064    2097152    2  freebsd-swap  (1.0G)
-    2098216        984       - free -  (492K)
-    2099200    2093056    3  freebsd-zfs  (1.0G)
-    4192256  499124184       - free -  (1.0M)
+<pre><code>ifconfig_DEFAULT=&quot;SYNCDHCP&quot;
 </code></pre>
 
-<p>Then type <code>gpart recover da0</code>:</p>
+<p>The image has been build using this
+<a href="https://github.com/fabrik-red/images/blob/master/src.conf">src.conf</a>, this
+<a href="https://github.com/fabrik-red/images/blob/master/fabrik.kernel">kernel</a>
+and the jail using this
+<a href="https://github.com/fabrik-red/images/blob/master/src-jail.conf">src-jail.conf</a>.</p>
 
-<pre><code>$ gpart recover da0
-da0 recovered
+<p>The <a href="https://github.com/fabrik-red/images/blob/master/fabrik.sh#L67-L96">zfs layout</a> used looks like this:</p>
+
+<pre><code class="language-sh">&gt; zfs list
+NAME                           USED  AVAIL  REFER  MOUNTPOINT
+zroot                          496M  13.2G    88K  /zroot
+zroot/ROOT                     254M  13.2G    88K  none
+zroot/ROOT/default             254M  13.2G   254M  /
+zroot/jails                    226M  13.2G    88K  /jails
+zroot/jails/base               226M  9.78G   226M  /jails/base
+zroot/jails/base/tmp            88K  9.78G    88K  /jails/base/tmp
+zroot/tmp                       88K  13.2G    88K  /tmp
+zroot/usr                     13.5M  13.2G    88K  /usr
+zroot/usr/doc                   88K  13.2G    88K  /usr/doc
+zroot/usr/home                 128K  13.2G   128K  /usr/home
+zroot/usr/local               12.8M  13.2G  12.8M  /usr/local
+zroot/usr/obj                   88K  13.2G    88K  /usr/obj
+zroot/usr/ports                264K  13.2G    88K  /usr/ports
+zroot/usr/ports/distfiles       88K  13.2G    88K  /usr/ports/distfiles
+zroot/usr/ports/packages        88K  13.2G    88K  /usr/ports/packages
+zroot/usr/src                   88K  13.2G    88K  /usr/src
+zroot/var                     1.49M  13.2G    88K  /var
+zroot/var/audit                 88K  13.2G    88K  /var/audit
+zroot/var/crash                 88K  13.2G    88K  /var/crash
+zroot/var/db                   608K  13.2G   412K  /var/db
+zroot/var/db/pkg               196K  13.2G   196K  /var/db/pkg
+zroot/var/empty                 88K  13.2G    88K  /var/empty
+zroot/var/log                  120K  13.2G   120K  /var/log
+zroot/var/mail                  88K  13.2G    88K  /var/mail
+zroot/var/ports                 88K  13.2G    88K  /var/ports
+zroot/var/spool                184K  13.2G    96K  /var/spool
+zroot/var/spool/clientmqueue    88K  13.2G    88K  /var/spool/clientmqueue
+zroot/var/tmp                   88K  13.2G    88K  /var/tmp
 </code></pre>
 
-<p>And next resize <code>gpart resize -i 3 da0</code>:</p>
+<p>The <code>/etc/rc.conf</code> looks like:</p>
 
-<pre><code>$ gpart resize -i 3 da0
-da0 resized
+<pre><code class="language-sh">&gt; cat /etc/rc.conf
+aws_firstboot_enable=&quot;YES&quot;
+gce_firstboot_enable=&quot;YES&quot;
+pf_firstboot_enable=&quot;YES&quot;
+zfs_firstboot_enable=&quot;YES&quot;
+zfs_enable=&quot;YES&quot;
+gateway_enable=&quot;YES&quot;
+hostname=&quot;fabrik&quot; # change to your desired hostname
+ifconfig_DEFAULT=&quot;SYNCDHCP mtu 1460&quot; # change this to match your host
+clear_tmp_enable=&quot;YES&quot;
+dumpdev=&quot;NO&quot;
+ntpd_enable=&quot;YES&quot;
+ntpdate_enable=&quot;YES&quot;
+sendmail_enable=&quot;NONE&quot;
+sshd_enable=&quot;YES&quot;
+syslogd_flags=&quot;-ssC&quot;
+cloned_interfaces=&quot;lo1&quot;
+ifconfig_lo1_aliases=&quot;inet 172.16.13.1/24 inet 172.16.13.2-5/32&quot;
+#-----------------------------------------------------------------------
+# pf
+#-----------------------------------------------------------------------
+pf_enable=&quot;YES&quot;
+pf_rules=&quot;/etc/pf.conf&quot;
+pflog_enable=&quot;YES&quot;
+pflog_logfile=&quot;/var/log/pflog&quot;
+#-----------------------------------------------------------------------
+# jails
+#-----------------------------------------------------------------------
+jail_enable=&quot;YES&quot;
+jail_list=&quot;base&quot;
 </code></pre>
 
-<blockquote>
-<p>-i 3,  3 is the freebsd-zfs</p>
-</blockquote>
+<p>And the <code>/etc/pf.conf</code> like:</p>
 
-<p>After resizing:</p>
-
-<pre><code class="language-sh">root@/:~ # gpart show
-=&gt;       40  503316400  da0  GPT  (240G)
-         40       1024    1  freebsd-boot  (512K)
-       1064    2097152    2  freebsd-swap  (1.0G)
-    2098216        984       - free -  (492K)
-    2099200  501217240    3  freebsd-zfs  (239G)
-</code></pre>
-
-<p>Get zpool information by typing:</p>
-
-<pre><code>$ zdb
-</code></pre>
-
-<p>Find the children guid from the output:</p>
-
-<pre><code>zroot -&gt; vdev_tree -&gt; children[0] -&gt; guid
-</code></pre>
-
-<pre><code class="language-sh">root@:/raw # zdb
-zroot:
-    version: 5000
-    name: 'zroot'
-    state: 0
-    txg: 422
-    pool_guid: 5388488397555579451
-    hostid: 4037738314
-    hostname: ''
-    com.delphix:has_per_vdev_zaps
-    vdev_children: 1
-    vdev_tree:
-        type: 'root'
-        id: 0
-        guid: 5388488397555579451
-        create_txg: 4
-        children[0]:
-            type: 'disk'
-            id: 0
-            guid: 2304114010935459478
-            path: '/dev/gpt/disk0'
-            whole_disk: 1
-            metaslab_array: 37
-            metaslab_shift: 24
-            ashift: 12
-            asize: 8584429568
-            is_log: 0
-            create_txg: 4
-            com.delphix:vdev_zap_leaf: 35
-            com.delphix:vdev_zap_top: 36
-    features_for_read:
-        com.delphix:hole_birth
-        com.delphix:embedded_data
-</code></pre>
-
-<p>Resize the pool:</p>
-
-<pre><code>$ zpool online -e zroot 2304114010935459478
-</code></pre>
-
-<p>Check the pool:</p>
-
-<pre><code class="language-sh">root@:/raw # zpool list
-NAME    SIZE  ALLOC   FREE  EXPANDSZ   FRAG    CAP  DEDUP  HEALTH  ALTROOT
-zroot  7.98G   258M  7.73G         -     2%     3%  1.00x  ONLINE  -
-</code></pre>
-
-<h2 id="readonly-off">readonly=off</h2>
-
-<p>Set the <code>/</code> to readonly off:</p>
-
-<pre><code>$ zfs set readonly=off zroot/ROOT/default
+<pre><code class="language-sh">&gt; cat /etc/pf.conf
+ext_if = &quot;em0&quot;
+set skip on lo
+scrub in all
+nat on $ext_if from lo1:network to any -&gt; ($ext_if)
+pass all
 </code></pre>
 
                 </section>
@@ -195,7 +178,7 @@ zroot  7.98G   258M  7.73G         -     2%     3%  1.00x  ONLINE  -
                 
                     
                 <section id="sharing">
-                    <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2ffabrik.red%2fpost%2fzfs-resize%2f - resize%20ZFS "><span class="icon-twitter"> Tweet</span></a>
+                    <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2ffabrik.red%2fpost%2fafter%2f - After%20booting "><span class="icon-twitter"> Tweet</span></a>
 
 <a class="facebook" href="#" onclick="
     window.open(
@@ -211,9 +194,9 @@ zroot  7.98G   258M  7.73G         -     2%     3%  1.00x  ONLINE  -
             <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'fabrik-red';
-    var disqus_identifier = 'https:\/\/fabrik.red\/post\/zfs-resize\/';
-    var disqus_title = 'resize ZFS';
-    var disqus_url = 'https:\/\/fabrik.red\/post\/zfs-resize\/';
+    var disqus_identifier = 'https:\/\/fabrik.red\/post\/after\/';
+    var disqus_title = 'After booting';
+    var disqus_url = 'https:\/\/fabrik.red\/post\/after\/';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
