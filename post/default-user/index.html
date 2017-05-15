@@ -86,14 +86,14 @@ firstboot, and add it to the <code>~/.ssh/authorized_keys</code> file.</p>
 
 <p>For GCE this URL is used:</p>
 
-<pre><code>http://169.254.169.254/computeMetadata/v1/project/attributes/ssh-keys
+<pre><code class="language-url">http://169.254.169.254/computeMetadata/v1/project/attributes/ssh-keys
 </code></pre>
 
 <p>More info can be found here: <a href="https://cloud.google.com/compute/docs/storing-retrieving-metadata">https://cloud.google.com/compute/docs/storing-retrieving-metadata</a></p>
 
 <p>For AWS this URL is used:</p>
 
-<pre><code>http://169.254.169.254/1.0/meta-data/public-keys/0/openssh-key
+<pre><code class="language-url">http://169.254.169.254/1.0/meta-data/public-keys/0/openssh-key
 </code></pre>
 
 <p>More info can be found here: <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html">http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html</a></p>
