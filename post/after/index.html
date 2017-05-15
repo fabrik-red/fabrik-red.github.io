@@ -78,7 +78,7 @@
 providers as possible, therefore extra adjustments need to be done after
 booting, starting by removing/changing the password for the user <strong>devops</strong></p>
 
-<p>In case not using GCE the <code>mtu 1460</code> option may be removed from the <code>rc.conf</code>:</p>
+<p>In case not using <a href="https://cloud.google.com/">GCE</a> the <code>mtu 1460</code> option may be removed from the <code>rc.conf</code>:</p>
 
 <pre><code>ifconfig_DEFAULT=&quot;SYNCDHCP mtu 1460&quot;
 </code></pre>
