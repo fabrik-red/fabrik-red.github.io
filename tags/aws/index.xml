@@ -21,5 +21,18 @@
       <description>Creating the image (disk.raw) The fastest way of doing this (less than 1 hour) is to use AWS and chose the c4.8xlarge instance, at the moment of writhing this, is an instance with 36 vCPU / 60 RAM, the important thing to check for, is the amount of cores not really the memory. After finishing building, stop or terminate the build instance, mainly because is a very expensive instance and in best scenario you just want to do all this in less than 1 hour.</description>
     </item>
     
+    <item>
+      <title>Default username, password</title>
+      <link>https://fabrik.red/post/default-user/</link>
+      <pubDate>Sun, 07 May 2017 15:28:59 +0200</pubDate>
+      
+      <guid>https://fabrik.red/post/default-user/</guid>
+      <description>devops is the only username created with password fabrik.
+After verifying that image is booting and that can logging, change the password or configure ssh to only allow access by using ssh keys.
+If using AWS or GCE the image will try to fetch the ssh public key on the firstboot, and add it to the ~/.ssh/authorized_keys file.
+For GCE this URL is used:
+http://169.254.169.254/computeMetadata/v1/project/attributes/ssh-keys  More info can be found here: https://cloud.</description>
+    </item>
+    
   </channel>
 </rss>
