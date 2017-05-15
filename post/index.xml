@@ -42,7 +42,7 @@ The advantage of using GCE google compute engine is that the image can be upload
       <description>devops is the only username created with password fabrik.
 After verifying that image is booting, log in to the instance, change the password or configure ssh to only allow access by using ssh keys.
 If using AWS or GCE the image will try to fetch the ssh public key on the firstboot, and add it to the ~/.ssh/authorized_keys file.
-GCE For GCE this URL is used:
+GCE For GCE this URL is used in gce_firstboot:
 http://169.254.169.254/computeMetadata/v1/project/attributes/ssh-keys  More info can be found here: https://cloud.</description>
     </item>
     
