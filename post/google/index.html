@@ -8,7 +8,7 @@
 		<meta name="description" content="FreeBSD jails factory">
 		<meta name="keywords" content="freebsd, jails, containers, zfs">
 		<meta name="generator" content="Hugo 0.20.7" />
-		<title>resize ZFS &middot; fabrik</title>
+		<title>Uplod image to Google GCP &middot; fabrik</title>
         <link rel="apple-touch-icon" sizes="57x57" href="https://fabrik.red/images/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="https://fabrik.red/images/apple-icon-60x60.png">
         <link rel="apple-touch-icon" sizes="72x72" href="https://fabrik.red/images/apple-icon-72x72.png">
@@ -57,136 +57,91 @@
         <section id="wrapper">
             <article class="post">
                 <header>
-                    <h1>resize ZFS</h1>
+                    <h1>Uplod image to Google GCP</h1>
                     <h2 class="headline">
                     <br>
-                    
-                    
-                        
-                            <a href="https://fabrik.red/tags/zfs">zfs</a>
-                        
-                            <a href="https://fabrik.red/tags/freebsd">freebsd</a>
-                        
-                            <a href="https://fabrik.red/tags/raw">raw</a>
-                        
-                            <a href="https://fabrik.red/tags/image">image</a>
-                        
-                    
                     
                     </h2>
                 </header>
                 <section id="post-body">
-                    
+                    <p>To upload the image to GCP download the image
+<a href="https://github.com/fabrik-red/images/releases/">disk.tar.gz</a> and upload it to your bucket:</p>
 
-<blockquote>
-<p>The <a href="https://github.com/fabrik-red/images/releases/download/0.1.0/disk.tar.gz">disk.raw</a>
-automatically on the firstboot will try to resize the disk</p>
-</blockquote>
-
-<p>After booting the ZFS pool need to be increased:</p>
-
-<pre><code>$ gpart show da0
-</code></pre>
-
-<p>Example of output:</p>
-
-<pre><code class="language-sh">root@/:~ # gpart show
-=&gt;       40  503316400  da0  GPT  (240G)
-         40       1024    1  freebsd-boot  (512K)
-       1064    2097152    2  freebsd-swap  (1.0G)
-    2098216        984       - free -  (492K)
-    2099200    2093056    3  freebsd-zfs  (1.0G)
-    4192256  499124184       - free -  (1.0M)
-</code></pre>
-
-<p>Then type <code>gpart recover da0</code>:</p>
-
-<pre><code>$ gpart recover da0
-da0 recovered
-</code></pre>
-
-<p>And next resize <code>gpart resize -i 3 da0</code>:</p>
-
-<pre><code>$ gpart resize -i 3 da0
-da0 resized
+<pre><code class="language-sh">gsutil cp disk.tar.gz gs://your-bucket/
 </code></pre>
 
 <blockquote>
-<p>-i 3,  3 is the freebsd-zfs</p>
+<p>probably you will need to run <code>gcloud init</code>, more info: <a href="https://cloud.google.com/storage/docs/gsutil_install">https://cloud.google.com/storage/docs/gsutil_install</a></p>
 </blockquote>
 
-<p>After resizing:</p>
+<p>Then create the image:</p>
 
-<pre><code class="language-sh">root@/:~ # gpart show
-=&gt;       40  503316400  da0  GPT  (240G)
-         40       1024    1  freebsd-boot  (512K)
-       1064    2097152    2  freebsd-swap  (1.0G)
-    2098216        984       - free -  (492K)
-    2099200  501217240    3  freebsd-zfs  (239G)
+<pre><code class="language-sh">$ gcloud compute images create freebsd --source-uri gs://your-bucket/disk.tar.gz
 </code></pre>
 
-<p>Get zpool information by typing:</p>
+<p>The output should be like:</p>
 
-<pre><code>$ zdb
+<pre><code class="language-sh">Created [https://www.googleapis.com/compute/v1/projects/x-fabric-167819/global/images/freebsd].
+NAME     PROJECT          FAMILY  DEPRECATED  STATUS
+freebsd  x-fabric-167819                      READY
 </code></pre>
 
-<p>Find the children guid from the output:</p>
+<p>Before starting the instance ssh-keys could be added on the <a href="https://cloud.google.com/compute/docs/storing-retrieving-metadata?hl=en _US#common">metadata section</a></p>
 
-<pre><code>zroot -&gt; vdev_tree -&gt; children[0] -&gt; guid
+<p><img src="/img/gcp-metadata.png" alt="gcp metadata" /></p>
+
+<p>Notice the key name is: <code>ssh-keys</code></p>
+
+<p>Finaly create the instance:</p>
+
+<pre><code class="language-sh">$ gcloud compute instances create example-f1-micro --machine-type f1-micro --image freebsd --zone europe-west1-c --boot-disk-size 10GB
 </code></pre>
 
-<pre><code class="language-sh">root@:/raw # zdb
-zroot:
-    version: 5000
-    name: 'zroot'
-    state: 0
-    txg: 422
-    pool_guid: 5388488397555579451
-    hostid: 4037738314
-    hostname: ''
-    com.delphix:has_per_vdev_zaps
-    vdev_children: 1
-    vdev_tree:
-        type: 'root'
-        id: 0
-        guid: 5388488397555579451
-        create_txg: 4
-        children[0]:
-            type: 'disk'
-            id: 0
-            guid: 2304114010935459478
-            path: '/dev/gpt/disk0'
-            whole_disk: 1
-            metaslab_array: 37
-            metaslab_shift: 24
-            ashift: 12
-            asize: 8584429568
-            is_log: 0
-            create_txg: 4
-            com.delphix:vdev_zap_leaf: 35
-            com.delphix:vdev_zap_top: 36
-    features_for_read:
-        com.delphix:hole_birth
-        com.delphix:embedded_data
+<p>The output:</p>
+
+<pre><code class="language-sh">WARNING: You have selected a disk size of under [200GB]. This may result in poor I/O performance. For more information, see: https://developers.google.com/compute/docs/disks#pdperformance.
+Created [https://www.googleapis.com/compute/v1/projects/x-fabric-167819/zones/europe-west1-c/instances/example-f1-micro].
+NAME              ZONE            MACHINE_TYPE  PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP    STATUS
+example-f1-micro  europe-west1-c  f1-micro                   10.132.0.2   104.199.60.70  RUNNING
 </code></pre>
 
-<p>Resize the pool:</p>
+<p>Try to ssh and fine tune the app, see <a href="/post/after">after boot</a></p>
 
-<pre><code>$ zpool online -e zroot 2304114010935459478
-</code></pre>
+<p>Example of an ifconfig after booting:</p>
 
-<p>Check the pool:</p>
-
-<pre><code class="language-sh">root@:/raw # zpool list
-NAME    SIZE  ALLOC   FREE  EXPANDSZ   FRAG    CAP  DEDUP  HEALTH  ALTROOT
-zroot  7.98G   258M  7.73G         -     2%     3%  1.00x  ONLINE  -
-</code></pre>
-
-<h2 id="readonly-off">readonly=off</h2>
-
-<p>Set the <code>/</code> to readonly off:</p>
-
-<pre><code>$ zfs set readonly=off zroot/ROOT/default
+<pre><code class="language-sh">[root@fabrik:/usr/local/etc] [7:29:51pm Tue]                                                                                                                                                                                                                                    &gt; ifconfig
+vtnet0: flags=8943&lt;UP,BROADCAST,RUNNING,PROMISC,SIMPLEX,MULTICAST&gt; metric 0 mtu 1460
+        options=6c07bb&lt;RXCSUM,TXCSUM,VLAN_MTU,VLAN_HWTAGGING,JUMBO_MTU,VLAN_HWCSUM,TSO4,TSO6,LRO,VLAN_HWTSO,LINKSTATE,RXCSUM_IPV6,TXCSUM_IPV6&gt;
+        ether 42:01:0a:84:00:02
+        inet6 fe80::4001:aff:fe84:2%vtnet0 prefixlen 64 scopeid 0x1
+        inet 10.132.0.2 netmask 0xffffffff broadcast 10.132.0.2
+        nd6 options=21&lt;PERFORMNUD,AUTO_LINKLOCAL&gt;
+        media: Ethernet 10Gbase-T &lt;full-duplex&gt;
+        status: active
+enc0: flags=41&lt;UP,RUNNING&gt; metric 0 mtu 1536
+        nd6 options=21&lt;PERFORMNUD,AUTO_LINKLOCAL&gt;
+        groups: enc
+lo0: flags=8049&lt;UP,LOOPBACK,RUNNING,MULTICAST&gt; metric 0 mtu 1460
+        options=600003&lt;RXCSUM,TXCSUM,RXCSUM_IPV6,TXCSUM_IPV6&gt;
+        inet6 ::1 prefixlen 128
+        inet6 fe80::1%lo0 prefixlen 64 scopeid 0x3
+        inet 127.0.0.1 netmask 0xff000000
+        nd6 options=21&lt;PERFORMNUD,AUTO_LINKLOCAL&gt;
+        groups: lo
+pflog0: flags=141&lt;UP,RUNNING,PROMISC&gt; metric 0 mtu 33160
+        groups: pflog
+pfsync0: flags=41&lt;UP,RUNNING&gt; metric 0 mtu 1500
+        groups: pfsync
+        syncpeer: 0.0.0.0 maxupd: 128 defer: off
+lo1: flags=8049&lt;UP,LOOPBACK,RUNNING,MULTICAST&gt; metric 0 mtu 1460
+        options=600003&lt;RXCSUM,TXCSUM,RXCSUM_IPV6,TXCSUM_IPV6&gt;
+        inet 172.16.13.1 netmask 0xffffff00
+        inet 172.16.13.2 netmask 0xffffffff
+        inet 172.16.13.3 netmask 0xffffffff
+        inet 172.16.13.4 netmask 0xffffffff
+        inet 172.16.13.5 netmask 0xffffffff
+        nd6 options=21&lt;PERFORMNUD,AUTO_LINKLOCAL&gt;
+        groups: lo
 </code></pre>
 
                 </section>
@@ -195,7 +150,7 @@ zroot  7.98G   258M  7.73G         -     2%     3%  1.00x  ONLINE  -
                 
                     
                 <section id="sharing">
-                    <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2ffabrik.red%2fpost%2fzfs-resize%2f - resize%20ZFS "><span class="icon-twitter"> Tweet</span></a>
+                    <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2ffabrik.red%2fpost%2fgoogle%2f - Uplod%20image%20to%20Google%20GCP "><span class="icon-twitter"> Tweet</span></a>
 
 <a class="facebook" href="#" onclick="
     window.open(
@@ -211,9 +166,9 @@ zroot  7.98G   258M  7.73G         -     2%     3%  1.00x  ONLINE  -
             <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'fabrik-red';
-    var disqus_identifier = 'https:\/\/fabrik.red\/post\/zfs-resize\/';
-    var disqus_title = 'resize ZFS';
-    var disqus_url = 'https:\/\/fabrik.red\/post\/zfs-resize\/';
+    var disqus_identifier = 'https:\/\/fabrik.red\/post\/google\/';
+    var disqus_title = 'Uplod image to Google GCP';
+    var disqus_url = 'https:\/\/fabrik.red\/post\/google\/';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

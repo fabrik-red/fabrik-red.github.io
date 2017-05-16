@@ -83,5 +83,18 @@ ec2-import-volume disk.raw -f raw -z us-east-1a -b us-east-freebsd-ami -o AWS_AC
 ec2-describe-conversion-tasks  Once the volume has been created (task completed) create a snapshot, this can be done from the web interface:</description>
     </item>
     
+    <item>
+      <title>Uplod image to Google GCP</title>
+      <link>https://fabrik.red/post/google/</link>
+      <pubDate>Thu, 04 May 2017 09:14:58 +0200</pubDate>
+      
+      <guid>https://fabrik.red/post/google/</guid>
+      <description>To upload the image to GCP download the image disk.tar.gz and upload it to your bucket:
+gsutil cp disk.tar.gz gs://your-bucket/   probably you will need to run gcloud init, more info: https://cloud.google.com/storage/docs/gsutil_install
+ Then create the image:
+$ gcloud compute images create freebsd --source-uri gs://your-bucket/disk.tar.gz  The output should be like:
+Created [https://www.googleapis.com/compute/v1/projects/x-fabric-167819/global/images/freebsd]. NAME PROJECT FAMILY DEPRECATED STATUS freebsd x-fabric-167819 READY  Before starting the instance ssh-keys could be added on the metadata section</description>
+    </item>
+    
   </channel>
 </rss>

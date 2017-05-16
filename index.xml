@@ -84,6 +84,19 @@ ec2-describe-conversion-tasks  Once the volume has been created (task completed)
     </item>
     
     <item>
+      <title>Uplod image to Google GCP</title>
+      <link>https://fabrik.red/post/google/</link>
+      <pubDate>Thu, 04 May 2017 09:14:58 +0200</pubDate>
+      
+      <guid>https://fabrik.red/post/google/</guid>
+      <description>To upload the image to GCP download the image disk.tar.gz and upload it to your bucket:
+gsutil cp disk.tar.gz gs://your-bucket/   probably you will need to run gcloud init, more info: https://cloud.google.com/storage/docs/gsutil_install
+ Then create the image:
+$ gcloud compute images create freebsd --source-uri gs://your-bucket/disk.tar.gz  The output should be like:
+Created [https://www.googleapis.com/compute/v1/projects/x-fabric-167819/global/images/freebsd]. NAME PROJECT FAMILY DEPRECATED STATUS freebsd x-fabric-167819 READY  Before starting the instance ssh-keys could be added on the metadata section</description>
+    </item>
+    
+    <item>
       <title>What is Fabrik</title>
       <link>https://fabrik.red/about/</link>
       <pubDate>Tue, 13 Dec 2016 09:51:11 +0100</pubDate>
