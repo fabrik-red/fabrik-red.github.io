@@ -64,7 +64,7 @@ root@/:~ # gpart show =&amp;gt; 40 503316400 da0 GPT (240G) 40 1024 1 freebsd-bo
       <pubDate>Fri, 05 May 2017 23:34:16 +0200</pubDate>
       
       <guid>https://fabrik.red/post/after/</guid>
-      <description>The image is not tuned, and has only been configured to try boot in as many providers as possible, therefore extra adjustments need to be done after booting, starting by removing/changing the password for the user devops
+      <description>The image is not tuned, and has only been configured to boot in as many providers as possible, therefore extra adjustments need to be done after booting, starting by removing/changing the password for the user devops
 In case not using GCE the mtu 1460 option may be removed from the rc.conf:
 ifconfig_DEFAULT=&amp;quot;SYNCDHCP mtu 1460&amp;quot;  To:
 ifconfig_DEFAULT=&amp;quot;SYNCDHCP&amp;quot;  The image has been build using this src.conf, this kernel and the jail using this src-jail.</description>
