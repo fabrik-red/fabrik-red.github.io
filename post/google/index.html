@@ -76,7 +76,7 @@
 
 <p>Then create the image:</p>
 
-<pre><code class="language-sh">$ gcloud compute images create freebsd --source-uri gs://your-bucket/disk.tar.gz
+<pre><code class="language-sh">gcloud compute images create freebsd --source-uri gs://your-bucket/disk.tar.gz
 </code></pre>
 
 <p>The output should be like:</p>
@@ -94,7 +94,7 @@ freebsd  x-fabric-167819                      READY
 
 <p>Finaly create the instance:</p>
 
-<pre><code class="language-sh">$ gcloud compute instances create example-f1-micro --machine-type f1-micro --image freebsd --zone europe-west1-c --boot-disk-size 10GB
+<pre><code class="language-sh">gcloud compute instances create example-f1-micro --machine-type f1-micro --image freebsd --zone europe-west1-c --boot-disk-size 10GB
 </code></pre>
 
 <p>The output:</p>
@@ -109,7 +109,7 @@ example-f1-micro  europe-west1-c  f1-micro                   10.132.0.2   104.19
 
 <p>Example of an ifconfig after booting:</p>
 
-<pre><code class="language-sh">[root@fabrik:/usr/local/etc] [7:29:51pm Tue]                                                                                                                                                                                                                                    &gt; ifconfig
+<pre><code class="language-sh">[root@fabrik:/usr/local/etc] [7:29:51pm Tue] &gt; ifconfig
 vtnet0: flags=8943&lt;UP,BROADCAST,RUNNING,PROMISC,SIMPLEX,MULTICAST&gt; metric 0 mtu 1460
         options=6c07bb&lt;RXCSUM,TXCSUM,VLAN_MTU,VLAN_HWTAGGING,JUMBO_MTU,VLAN_HWCSUM,TSO4,TSO6,LRO,VLAN_HWTSO,LINKSTATE,RXCSUM_IPV6,TXCSUM_IPV6&gt;
         ether 42:01:0a:84:00:02
