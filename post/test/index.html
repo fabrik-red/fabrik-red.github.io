@@ -81,6 +81,27 @@ to be uncompressed and upload the plain 2GB <code>disk.raw</code>.</p>
 <p>Because of this the image is just created using 2GB and later needs to be expanded.</p>
 </blockquote>
 
+<h3 id="install-via-web">install via web</h3>
+
+<p>Some providers like <a href="https://www.vultr.com">vultr</a> and
+<a href="https://lunanode.com">lunanode</a> allow to use custom snapshots, images but an
+URL needs to be specified from the one the images will be fetched, for this
+cases you could use:</p>
+
+<pre><code>https://images.fabrik.red/disk.raw
+</code></pre>
+
+<p>Or</p>
+
+<pre><code>https://images.fabrik.red/disk.qcow2
+</code></pre>
+
+<blockquote>
+<p>In case is not resolving use the IP instead of the domain, for example: <a href="http://72.55.175.70/disk.qcow2">http://72.55.175.70/disk.qcow2</a></p>
+</blockquote>
+
+<h3 id="virtualbox">VirtualBox</h3>
+
 <p>To test in Virtualbox the <code>disk.raw</code> needs to be converted to <code>VDI</code> format:</p>
 
 <pre><code class="language-sh">VBoxManage convertfromraw disk.raw disk.vdi --format VDI
