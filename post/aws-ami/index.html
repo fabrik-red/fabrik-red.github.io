@@ -8,7 +8,7 @@
 		<meta name="description" content="FreeBSD jails factory">
 		<meta name="keywords" content="freebsd, jails, containers, zfs">
 		<meta name="generator" content="Hugo 0.20.7" />
-		<title>Default username, password &middot; fabrik</title>
+		<title>Upload AMI to AWS &middot; fabrik</title>
         <link rel="apple-touch-icon" sizes="57x57" href="https://fabrik.red/images/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="https://fabrik.red/images/apple-icon-60x60.png">
         <link rel="apple-touch-icon" sizes="72x72" href="https://fabrik.red/images/apple-icon-72x72.png">
@@ -57,52 +57,42 @@
         <section id="wrapper">
             <article class="post">
                 <header>
-                    <h1>Default username, password</h1>
+                    <h1>Upload AMI to AWS</h1>
                     <h2 class="headline">
                     <br>
-                    
-                    
-                        
-                            <a href="https://fabrik.red/tags/login">login</a>
-                        
-                            <a href="https://fabrik.red/tags/devops">devops</a>
-                        
-                            <a href="https://fabrik.red/tags/aws">AWS</a>
-                        
-                            <a href="https://fabrik.red/tags/gce">GCE</a>
-                        
-                    
                     
                     </h2>
                 </header>
                 <section id="post-body">
-                    
+                    <p>To upload the AMI to AWS download the image
+<a href="https://github.com/fabrik-red/images/releases/">disk.tar.gz</a> and unpack it:</p>
 
-<p><strong>devops</strong> is the only username created with password <code>fabrik</code>.</p>
-
-<p>After verifying that image is booting, log in to the instance, change the
-password or configure ssh to only allow access by using ssh keys.</p>
-
-<p>If using AWS or GCE the image will try to fetch the ssh public key on the
-firstboot, and add it to the <code>~/.ssh/authorized_keys</code> file.</p>
-
-<h3 id="gce">GCE</h3>
-
-<p>For GCE this URL is used in <a href="https://github.com/fabrik-red/images/blob/master/gce_firstboot">gce_firstboot</a>:</p>
-
-<pre><code class="language-url">http://169.254.169.254/computeMetadata/v1/project/attributes/ssh-keys
+<pre><code>tar jxf disk.tar.gz
 </code></pre>
 
-<p>More info can be found here: <a href="https://cloud.google.com/compute/docs/storing-retrieving-metadata">https://cloud.google.com/compute/docs/storing-retrieving-metadata</a></p>
+<p>Install the CLI tool: <a href="http://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/ec2-clt.pdf#tools-introduction">http://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/ec2-clt.pdf#tools-introduction</a></p>
 
-<h3 id="aws">AWS</h3>
+<p>Create a bucket in <strong>us-east (N.Virginia)</strong> region named something like <code>us-east-freebsd-ami</code> an then upload the raw by using this command:</p>
 
-<p>For AWS this URL is used in <a href="https://github.com/fabrik-red/images/blob/master/aws_firstboot">aws_firstboot</a>:</p>
-
-<pre><code class="language-url">http://169.254.169.254/1.0/meta-data/public-keys/0/openssh-key
+<pre><code>ec2-import-volume disk.raw -f raw -z us-east-1a -b us-east-freebsd-ami -o AWS_ACCESS_KEY -w AWS_SECRET_KEY
 </code></pre>
 
-<p>More info can be found here: <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html">http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html</a></p>
+<p>After finish you can check the task by using:</p>
+
+<pre><code>ec2-describe-conversion-tasks
+</code></pre>
+
+<p>Once the volume has been created (task completed) create a snapshot, this can be
+done from the web interface:</p>
+
+<p><img src="/img/create_aws_snapshot.png" alt="create snapshot" /></p>
+
+<p>Once the snapshot has been created, create an image:</p>
+
+<p><img src="/img/create_aws_image.png" alt="create image" /></p>
+
+<p>After creating the image and status is &ldquo;available&rdquo; it should be ready to be
+launched, once the image boot do the proper adjustments based on your needs.</p>
 
                 </section>
             </article>
@@ -110,7 +100,7 @@ firstboot, and add it to the <code>~/.ssh/authorized_keys</code> file.</p>
                 
                     
                 <section id="sharing">
-                    <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2ffabrik.red%2fpost%2fdefault-user%2f - Default%20username%2c%20password "><span class="icon-twitter"> Tweet</span></a>
+                    <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2ffabrik.red%2fpost%2faws-ami%2f - Upload%20AMI%20to%20AWS "><span class="icon-twitter"> Tweet</span></a>
 
 <a class="facebook" href="#" onclick="
     window.open(
@@ -126,9 +116,9 @@ firstboot, and add it to the <code>~/.ssh/authorized_keys</code> file.</p>
             <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'fabrik-red';
-    var disqus_identifier = 'https:\/\/fabrik.red\/post\/default-user\/';
-    var disqus_title = 'Default username, password';
-    var disqus_url = 'https:\/\/fabrik.red\/post\/default-user\/';
+    var disqus_identifier = 'https:\/\/fabrik.red\/post\/aws-ami\/';
+    var disqus_title = 'Upload AMI to AWS';
+    var disqus_url = 'https:\/\/fabrik.red\/post\/aws-ami\/';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

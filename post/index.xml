@@ -70,5 +70,18 @@ ifconfig_DEFAULT=&amp;quot;SYNCDHCP mtu 1460&amp;quot;  To:
 ifconfig_DEFAULT=&amp;quot;SYNCDHCP&amp;quot;  The image has been build using this src.conf, this kernel and the jail using this src-jail.</description>
     </item>
     
+    <item>
+      <title>Upload AMI to AWS</title>
+      <link>https://fabrik.red/post/aws-ami/</link>
+      <pubDate>Thu, 04 May 2017 10:47:11 +0200</pubDate>
+      
+      <guid>https://fabrik.red/post/aws-ami/</guid>
+      <description>To upload the AMI to AWS download the image disk.tar.gz and unpack it:
+tar jxf disk.tar.gz  Install the CLI tool: http://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/ec2-clt.pdf#tools-introduction
+Create a bucket in us-east (N.Virginia) region named something like us-east-freebsd-ami an then upload the raw by using this command:
+ec2-import-volume disk.raw -f raw -z us-east-1a -b us-east-freebsd-ami -o AWS_ACCESS_KEY -w AWS_SECRET_KEY  After finish you can check the task by using:
+ec2-describe-conversion-tasks  Once the volume has been created (task completed) create a snapshot, this can be done from the web interface:</description>
+    </item>
+    
   </channel>
 </rss>
