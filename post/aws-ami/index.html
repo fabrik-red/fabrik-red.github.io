@@ -95,11 +95,13 @@ done from the web interface:</p>
 launched, once the image boot do the proper adjustments based on your needs.</p>
 
 <p>After booting the image, because of the <code>*_firstboot</code> scripts it will reboot
-once, check that the disk has been resized and in case not follow this steps:
-<a href="https://fabrik.red/post/zfs-resize/">resize ZFS</a></p>
+once, check that the disk has been resized and in case not re run this:</p>
 
-<pre><code>zpool online -e zroot &lt;GUID&gt;
+<pre><code>service zfs_firstboot start
 </code></pre>
+
+<p>More info about the resize process can be found here:
+<a href="https://fabrik.red/post/zfs-resize">https://fabrik.red/post/zfs-resize</a></p>
 
                 </section>
             </article>
