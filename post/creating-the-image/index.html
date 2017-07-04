@@ -7,7 +7,7 @@
 		<meta name="author" content="fabrik">
 		<meta name="description" content="FreeBSD jails factory">
 		<meta name="keywords" content="freebsd, jails, containers, zfs">
-		<meta name="generator" content="Hugo 0.20.7" />
+		<meta name="generator" content="Hugo 0.24.1" />
 		<title>Creating the image (disk.raw) &middot; fabrik</title>
         <link rel="apple-touch-icon" sizes="57x57" href="https://fabrik.red/images/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="https://fabrik.red/images/apple-icon-60x60.png">
@@ -77,6 +77,18 @@
                     
 
 <h1 id="creating-the-image-disk-raw">Creating the image (disk.raw)</h1>
+
+<p>TL;DR:</p>
+
+<p>Login to an existing FreeBSD system and run:</p>
+
+<pre><code>fetch -qo - https://raw.githubusercontent.com/fabrik-red/images/master/fabrik.sh | sh
+</code></pre>
+
+<p>or</p>
+
+<pre><code>curl -sL https://raw.githubusercontent.com/fabrik-red/images/master/fabrik.sh | sh
+</code></pre>
 
 <p>The fastest way of doing this (less than 1 hour) is to use AWS and
 chose the <a href="https://aws.amazon.com/ec2/instance-types/">c4.8xlarge</a> instance,
