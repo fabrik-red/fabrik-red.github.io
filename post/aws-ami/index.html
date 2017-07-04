@@ -74,17 +74,17 @@
 
 <p>Create a bucket in <strong>us-east (N.Virginia)</strong> region named something like <code>us-east-freebsd-ami</code> an then upload the raw by using this command:</p>
 
-<pre><code>ec2-import-volume disk.raw -f raw -z us-east-1a -b us-east-freebsd-ami -o AWS_ACCESS_KEY -w AWS_SECRET_KEY
+<pre><code class="language-sh">ec2-import-volume disk.raw -f raw -z us-east-1a -b us-east-freebsd-ami -o AWS_ACCESS_KEY -w AWS_SECRET_KEY
 </code></pre>
 
 <p>After finish you can check the task by using:</p>
 
-<pre><code>ec2-describe-conversion-tasks
+<pre><code class="language-sh">ec2-describe-conversion-tasks
 </code></pre>
 
 <p>To upload to another region for example in Europe:</p>
 
-<pre><code>ec2-import-volume disk.raw -f raw --region eu-central-1 -z eu-central-1a -b your-bucket-name -o AWS_ACCESS_KEY -w AWS_SECRET_KEY
+<pre><code class="language-sh">ec2-import-volume disk.raw -f raw --region eu-central-1 -z eu-central-1a -b your-bucket-name -o AWS_ACCESS_KEY -w AWS_SECRET_KEY
 </code></pre>
 
 <p>Once the volume has been created (task completed) create a snapshot, this can be
