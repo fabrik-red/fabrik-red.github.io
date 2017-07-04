@@ -82,6 +82,11 @@
 <pre><code>ec2-describe-conversion-tasks
 </code></pre>
 
+<p>To upload to another region for example in Europe:</p>
+
+<pre><code>ec2-import-volume disk.raw -f raw --region eu-central-1 -z eu-central-1a -b your-bucket-name -o AWS_ACCESS_KEY -w AWS_SECRET_KEY
+</code></pre>
+
 <p>Once the volume has been created (task completed) create a snapshot, this can be
 done from the web interface:</p>
 

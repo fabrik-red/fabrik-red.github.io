@@ -83,7 +83,7 @@ ifconfig_DEFAULT=&amp;quot;SYNCDHCP&amp;quot;  The image has been build using th
 tar jxf disk.tar.gz  Install the CLI tool: http://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/ec2-clt.pdf#tools-introduction
 Create a bucket in us-east (N.Virginia) region named something like us-east-freebsd-ami an then upload the raw by using this command:
 ec2-import-volume disk.raw -f raw -z us-east-1a -b us-east-freebsd-ami -o AWS_ACCESS_KEY -w AWS_SECRET_KEY  After finish you can check the task by using:
-ec2-describe-conversion-tasks  Once the volume has been created (task completed) create a snapshot, this can be done from the web interface:</description>
+ec2-describe-conversion-tasks  To upload to another region for example in Europe:</description>
     </item>
     
     <item>
