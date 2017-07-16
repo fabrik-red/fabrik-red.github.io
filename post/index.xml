@@ -20,7 +20,7 @@
       <guid>https://fabrik.red/post/test/</guid>
       <description>Download the image: disk.tar.gz
 The image works in AWS, GCE, and other providers that allow custom images like vultr.com, netcup, lunanode or locally by using VirtualBox
-The advantage of using GCE google compute engine is that the image can be uploaded compressed tar.gz for other providers needs to be uncompressed and upload the plain 2GB disk.raw.
+One advantage of using GCE google compute engine is that the image can be uploaded compressed tar.gz for other providers needs to be uncompressed and upload the plain 2GB disk.raw.
  Because of this the image is just created using 2GB and later needs to be expanded.</description>
     </item>
     
