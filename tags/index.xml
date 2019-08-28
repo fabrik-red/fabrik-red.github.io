@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>Aws</title>
+      <title>aws</title>
       <link>https://fabrik.red/tags/aws/</link>
       <pubDate>Sun, 07 May 2017 15:30:48 +0200</pubDate>
       
@@ -21,43 +21,7 @@
     </item>
     
     <item>
-      <title>Devops</title>
-      <link>https://fabrik.red/tags/devops/</link>
-      <pubDate>Sun, 07 May 2017 15:28:59 +0200</pubDate>
-      
-      <guid>https://fabrik.red/tags/devops/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Freebsd</title>
-      <link>https://fabrik.red/tags/freebsd/</link>
-      <pubDate>Sun, 07 May 2017 10:16:17 +0200</pubDate>
-      
-      <guid>https://fabrik.red/tags/freebsd/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Gce</title>
-      <link>https://fabrik.red/tags/gce/</link>
-      <pubDate>Sun, 07 May 2017 15:28:59 +0200</pubDate>
-      
-      <guid>https://fabrik.red/tags/gce/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Hostname</title>
-      <link>https://fabrik.red/tags/hostname/</link>
-      <pubDate>Fri, 05 May 2017 23:34:16 +0200</pubDate>
-      
-      <guid>https://fabrik.red/tags/hostname/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Image</title>
+      <title>image</title>
       <link>https://fabrik.red/tags/image/</link>
       <pubDate>Sun, 07 May 2017 15:30:48 +0200</pubDate>
       
@@ -66,25 +30,7 @@
     </item>
     
     <item>
-      <title>Login</title>
-      <link>https://fabrik.red/tags/login/</link>
-      <pubDate>Sun, 07 May 2017 15:28:59 +0200</pubDate>
-      
-      <guid>https://fabrik.red/tags/login/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Mtu</title>
-      <link>https://fabrik.red/tags/mtu/</link>
-      <pubDate>Fri, 05 May 2017 23:34:16 +0200</pubDate>
-      
-      <guid>https://fabrik.red/tags/mtu/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Raw</title>
+      <title>raw</title>
       <link>https://fabrik.red/tags/raw/</link>
       <pubDate>Sun, 07 May 2017 15:30:48 +0200</pubDate>
       
@@ -93,20 +39,74 @@
     </item>
     
     <item>
-      <title>Tso</title>
-      <link>https://fabrik.red/tags/tso/</link>
-      <pubDate>Fri, 05 May 2017 23:34:16 +0200</pubDate>
+      <title>devops</title>
+      <link>https://fabrik.red/tags/devops/</link>
+      <pubDate>Sun, 07 May 2017 15:28:59 +0200</pubDate>
       
-      <guid>https://fabrik.red/tags/tso/</guid>
+      <guid>https://fabrik.red/tags/devops/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Zfs</title>
+      <title>GCE</title>
+      <link>https://fabrik.red/tags/gce/</link>
+      <pubDate>Sun, 07 May 2017 15:28:59 +0200</pubDate>
+      
+      <guid>https://fabrik.red/tags/gce/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>login</title>
+      <link>https://fabrik.red/tags/login/</link>
+      <pubDate>Sun, 07 May 2017 15:28:59 +0200</pubDate>
+      
+      <guid>https://fabrik.red/tags/login/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>freebsd</title>
+      <link>https://fabrik.red/tags/freebsd/</link>
+      <pubDate>Sun, 07 May 2017 10:16:17 +0200</pubDate>
+      
+      <guid>https://fabrik.red/tags/freebsd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>zfs</title>
       <link>https://fabrik.red/tags/zfs/</link>
       <pubDate>Sun, 07 May 2017 10:16:17 +0200</pubDate>
       
       <guid>https://fabrik.red/tags/zfs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hostname</title>
+      <link>https://fabrik.red/tags/hostname/</link>
+      <pubDate>Fri, 05 May 2017 23:34:16 +0200</pubDate>
+      
+      <guid>https://fabrik.red/tags/hostname/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mtu</title>
+      <link>https://fabrik.red/tags/mtu/</link>
+      <pubDate>Fri, 05 May 2017 23:34:16 +0200</pubDate>
+      
+      <guid>https://fabrik.red/tags/mtu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tso</title>
+      <link>https://fabrik.red/tags/tso/</link>
+      <pubDate>Fri, 05 May 2017 23:34:16 +0200</pubDate>
+      
+      <guid>https://fabrik.red/tags/tso/</guid>
       <description></description>
     </item>
     
