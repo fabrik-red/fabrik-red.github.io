@@ -7,7 +7,7 @@
 		<meta name="author" content="fabrik">
 		<meta name="description" content="FreeBSD jails factory">
 		<meta name="keywords" content="freebsd, jails, containers, zfs">
-		<meta name="generator" content="Hugo 0.57.2" />
+		<meta name="generator" content="Hugo 0.72.0" />
 		<title>Creating the image (disk.raw) &middot; fabrik</title>
         <link rel="apple-touch-icon" sizes="57x57" href="https://fabrik.red/images/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="https://fabrik.red/images/apple-icon-60x60.png">
@@ -74,22 +74,14 @@
                     </h2>
                 </header>
                 <section id="post-body">
-                    
-
-<h1 id="creating-the-image-disk-raw">Creating the image (disk.raw)</h1>
-
+                    <h1 id="creating-the-image-diskraw">Creating the image (disk.raw)</h1>
 <p>TL;DR:</p>
-
 <p>Login to an existing FreeBSD system and run:</p>
-
 <pre><code>fetch -qo - https://raw.githubusercontent.com/fabrik-red/images/master/fabrik.sh | sh
 </code></pre>
-
 <p>or</p>
-
 <pre><code>curl -sL https://raw.githubusercontent.com/fabrik-red/images/master/fabrik.sh | sh
 </code></pre>
-
 <p>The fastest way of doing this (less than 1 hour) is to use AWS and
 chose the <a href="https://aws.amazon.com/ec2/instance-types/">c4.8xlarge</a> instance,
 at the moment of writhing this, is an instance with 36 vCPU / 60 RAM, the
@@ -97,47 +89,31 @@ important thing to check for, is the amount of cores not really the memory.
 After finishing building, <strong>stop</strong> or <strong>terminate</strong> the build instance, mainly
 because is a very expensive instance and in best scenario you just want to do
 all this in less than 1 hour.</p>
-
 <blockquote>
 <p>buildworld &amp; buildkernel within a c4.8xlarge can be done in less than 7min.</p>
 </blockquote>
-
 <h3 id="creating-the-image-within-aws">Creating the image within AWS</h3>
-
 <p>Boot using an existing <a href="https://aws.amazon.com/marketplace/seller-profile?id=4a931b8a-95f6-4bb2-8b7e-53507851c459">FreeBSD AMI</a></p>
-
 <blockquote>
 <p>Tip, search for Colin Percival AMI&rsquo;s</p>
 </blockquote>
-
 <p>The idea is to have a working FreeBSD AMI up and running the one will be just
 used for creating the new AMI.</p>
-
 <p>To create, upload the custom image is recommended to do it in US East (N.
 Virginia), for now, seems to be the only region where custom AMI&rsquo;s could be
 uploaded, once you have tested your image and are happy with it, you can copy it
 to other AWS zones.</p>
-
-<h3 id="fabrik-sh">fabrik.sh</h3>
-
+<h3 id="fabriksh">fabrik.sh</h3>
 <p>Login to your FreeBSD server (AWS, VirtualBox, etc) and fetch the
 <a href="https://github.com/fabrik-red/images/blob/master/fabrik.sh">fabrik.sh</a> script:</p>
-
-<pre><code class="language-sh">fetch --no-verify-peer https://rawgit.com/fabrik-red/images/master/fabrik.sh -o /fabrik.sh
-</code></pre>
-
-<p>or run directly by using:</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">fetch --no-verify-peer https://rawgit.com/fabrik-red/images/master/fabrik.sh -o /fabrik.sh
+</code></pre></div><p>or run directly by using:</p>
 <pre><code>curl -sL https://raw.githubusercontent.com/fabrik-red/images/master/fabrik-aws.sh | sh
 </code></pre>
-
 <p>Run the script, preferably under a tmux/screen session just in case, since it
 could take some minutes, hours to finish.</p>
-
-<pre><code class="language-sh">sh /fabrik.sh
-</code></pre>
-
-<p>The script behind scenes will update the sources, build the world,
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sh /fabrik.sh
+</code></pre></div><p>The script behind scenes will update the sources, build the world,
 kernel and custom world for the base jails, once done it will create a
 <a href="https://github.com/fabrik-red/images/releases/download/0.1.0/disk.tar.gz">disk.raw</a> located in
 <code>/fabrik/disk.raw</code></p>

@@ -7,7 +7,7 @@
 		<meta name="author" content="fabrik">
 		<meta name="description" content="FreeBSD jails factory">
 		<meta name="keywords" content="freebsd, jails, containers, zfs">
-		<meta name="generator" content="Hugo 0.57.2" />
+		<meta name="generator" content="Hugo 0.72.0" />
 		<title>Upload AMI to AWS &middot; fabrik</title>
         <link rel="apple-touch-icon" sizes="57x57" href="https://fabrik.red/images/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="https://fabrik.red/images/apple-icon-60x60.png">
@@ -66,45 +66,26 @@
                 <section id="post-body">
                     <p>To upload the AMI to AWS download the image
 <a href="https://github.com/fabrik-red/images/releases/">disk.tar.gz</a> and unpack it:</p>
-
 <pre><code>tar jxf disk.tar.gz
 </code></pre>
-
 <p>Install the CLI tool: <a href="http://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/ec2-clt.pdf#tools-introduction">http://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/ec2-clt.pdf#tools-introduction</a></p>
-
 <p>Create a bucket in <strong>us-east (N.Virginia)</strong> region named something like <code>us-east-freebsd-ami</code> an then upload the raw by using this command:</p>
-
-<pre><code class="language-sh">ec2-import-volume disk.raw -f raw -z us-east-1a -b us-east-freebsd-ami -o AWS_ACCESS_KEY -w AWS_SECRET_KEY
-</code></pre>
-
-<p>After finish you can check the task by using:</p>
-
-<pre><code class="language-sh">ec2-describe-conversion-tasks
-</code></pre>
-
-<p>To upload to another region for example in Europe:</p>
-
-<pre><code class="language-sh">ec2-import-volume disk.raw -f raw --region eu-central-1 -z eu-central-1a -b your-bucket-name -o AWS_ACCESS_KEY -w AWS_SECRET_KEY
-</code></pre>
-
-<p>Once the volume has been created (task completed) create a snapshot, this can be
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">ec2-import-volume disk.raw -f raw -z us-east-1a -b us-east-freebsd-ami -o AWS_ACCESS_KEY -w AWS_SECRET_KEY
+</code></pre></div><p>After finish you can check the task by using:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">ec2-describe-conversion-tasks
+</code></pre></div><p>To upload to another region for example in Europe:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">ec2-import-volume disk.raw -f raw --region eu-central-1 -z eu-central-1a -b your-bucket-name -o AWS_ACCESS_KEY -w AWS_SECRET_KEY
+</code></pre></div><p>Once the volume has been created (task completed) create a snapshot, this can be
 done from the web interface:</p>
-
-<p><img src="/img/create_aws_snapshot.png" alt="create snapshot" /></p>
-
+<p><img src="/img/create_aws_snapshot.png" alt="create snapshot"></p>
 <p>Once the snapshot has been created, create an image:</p>
-
-<p><img src="/img/create_aws_image.png" alt="create image" /></p>
-
+<p><img src="/img/create_aws_image.png" alt="create image"></p>
 <p>After creating the image and status is &ldquo;available&rdquo; it should be ready to be
 launched, once the image boot do the proper adjustments based on your needs.</p>
-
 <p>After booting the image, because of the <code>*_firstboot</code> scripts it will reboot
 once, check that the disk has been resized and in case not re run this:</p>
-
 <pre><code>service zfs_firstboot start
 </code></pre>
-
 <p>More info about the resize process can be found here:
 <a href="https://fabrik.red/post/zfs-resize">https://fabrik.red/post/zfs-resize</a></p>
 

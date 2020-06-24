@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>fabrik</title>
@@ -45,7 +45,7 @@ curl -sL https://raw.githubusercontent.com/fabrik-red/images/master/fabrik.sh | 
 After verifying that image is booting, log in to the instance, change the password or configure ssh to only allow access by using ssh keys.
 If using AWS or GCE the image will try to fetch the ssh public key on the firstboot, and add it to the ~/.ssh/authorized_keys file.
 GCE For GCE this URL is used in gce_firstboot:
-http://169.254.169.254/computeMetadata/v1/project/attributes/ssh-keys  More info can be found here: https://cloud.</description>
+http://169.254.169.254/computeMetadata/v1/project/attributes/ssh-keys More info can be found here: https://cloud.</description>
     </item>
     
     <item>
@@ -57,7 +57,7 @@ http://169.254.169.254/computeMetadata/v1/project/attributes/ssh-keys  More info
       <description>The disk.raw automatically on the firstboot will try to resize the disk
  After booting the ZFS pool need to be increased:
 $ gpart show da0  Example of output:
-root@/:~ # gpart show =&amp;gt; 40 503316400 da0 GPT (240G) 40 1024 1 freebsd-boot (512K) 1064 2097152 2 freebsd-swap (1.0G) 2098216 984 - free - (492K) 2099200 2093056 3 freebsd-zfs (1.0G) 4192256 499124184 - free - (1.0M)  Then type gpart recover da0:</description>
+root@/:~ # gpart show =&amp;gt; 40 503316400 da0 GPT (240G) 40 1024 1 freebsd-boot (512K) 1064 2097152 2 freebsd-swap (1.0G) 2098216 984 - free - (492K) 2099200 2093056 3 freebsd-zfs (1.0G) 4192256 499124184 - free - (1.0M) Then type gpart recover da0:</description>
     </item>
     
     <item>
@@ -81,8 +81,8 @@ ifconfig_DEFAULT=&amp;quot;SYNCDHCP&amp;quot;  The image has been build using th
       <description>To upload the AMI to AWS download the image disk.tar.gz and unpack it:
 tar jxf disk.tar.gz  Install the CLI tool: http://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/ec2-clt.pdf#tools-introduction
 Create a bucket in us-east (N.Virginia) region named something like us-east-freebsd-ami an then upload the raw by using this command:
-ec2-import-volume disk.raw -f raw -z us-east-1a -b us-east-freebsd-ami -o AWS_ACCESS_KEY -w AWS_SECRET_KEY  After finish you can check the task by using:
-ec2-describe-conversion-tasks  To upload to another region for example in Europe:</description>
+ec2-import-volume disk.raw -f raw -z us-east-1a -b us-east-freebsd-ami -o AWS_ACCESS_KEY -w AWS_SECRET_KEY After finish you can check the task by using:
+ec2-describe-conversion-tasks To upload to another region for example in Europe:</description>
     </item>
     
     <item>
@@ -92,10 +92,10 @@ ec2-describe-conversion-tasks  To upload to another region for example in Europe
       
       <guid>https://fabrik.red/post/google/</guid>
       <description>To upload the image to GCP download the image disk.tar.gz and upload it to your bucket:
-gsutil cp disk.tar.gz gs://your-bucket/   probably you will need to run gcloud init, more info: https://cloud.google.com/storage/docs/gsutil_install
+gsutil cp disk.tar.gz gs://your-bucket/  probably you will need to run gcloud init, more info: https://cloud.google.com/storage/docs/gsutil_install
  Then create the image:
-gcloud compute images create freebsd --source-uri gs://your-bucket/disk.tar.gz  The output should be like:
-Created [https://www.googleapis.com/compute/v1/projects/x-fabric-167819/global/images/freebsd]. NAME PROJECT FAMILY DEPRECATED STATUS freebsd x-fabric-167819 READY  Before starting the instance ssh-keys could be added on the metadata section</description>
+gcloud compute images create freebsd --source-uri gs://your-bucket/disk.tar.gz The output should be like:
+Created [https://www.googleapis.com/compute/v1/projects/x-fabric-167819/global/images/freebsd]. NAME PROJECT FAMILY DEPRECATED STATUS freebsd x-fabric-167819 READY Before starting the instance ssh-keys could be added on the [metadata section](https://cloud.</description>
     </item>
     
     <item>

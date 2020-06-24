@@ -7,7 +7,7 @@
 		<meta name="author" content="fabrik">
 		<meta name="description" content="FreeBSD jails factory">
 		<meta name="keywords" content="freebsd, jails, containers, zfs">
-		<meta name="generator" content="Hugo 0.57.2" />
+		<meta name="generator" content="Hugo 0.72.0" />
 		<title>What is Fabrik &middot; fabrik</title>
         <link rel="apple-touch-icon" sizes="57x57" href="https://fabrik.red/images/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="https://fabrik.red/images/apple-icon-60x60.png">
@@ -60,37 +60,26 @@
                     </h2>
                 </header>
                 <section id="post-body">
-                    
-
-<h2 id="what-is-fabrik">What is Fabrik ?</h2>
-
+                    <h2 id="what-is-fabrik-">What is Fabrik ?</h2>
 <p>For now is currently only a FreeBSD + ZFS on root <a href="https://github.com/fabrik-red/images/releases">raw image</a>
 with a base jail, ready to work in AWS, GCE, etc.</p>
-
-<h2 id="why">Why ?</h2>
-
+<h2 id="why-">Why ?</h2>
 <p>Unfortunately, few know and are capable of taking advantage of all the benefits
 and capabilities available within FreeBSD + ZFS + jails. It is a fact that for
 having a proper setup some work needs to be done.</p>
-
 <blockquote>
 <p><em>you don&rsquo;t get diamonds by just putting carbon in the microwave and wait for a couple of minutes.</em></p>
 </blockquote>
-
 <p>The idea behind <strong>Fabrik</strong> is to simplify the initial/bootstrap work (custom
 kernel + ZFS + base jail) and come with a ready to work image that can be used
 out of the box and create jails on demand.</p>
-
 <p>The project consists of two main stages, the image (<a href="/post/test">disk.raw</a>) which
 is a FreeBSD + root ZFS + jails and the application <strong>fabrik</strong> that ends been a
 wrapper of tools like jail, zfs, zpool, etc.</p>
-
 <p>The application <strong>fabrik</strong> is at an early development stage, but the image is
 currently working, you can give a try: <a href="/post/test">disk.raw</a></p>
-
 <p>The image out of the box contains a working jail (172.16.13.2), to access to it
 from the main host type:</p>
-
 <pre><code>jexec 10
 </code></pre>
 

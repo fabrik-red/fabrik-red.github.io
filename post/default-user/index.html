@@ -7,7 +7,7 @@
 		<meta name="author" content="fabrik">
 		<meta name="description" content="FreeBSD jails factory">
 		<meta name="keywords" content="freebsd, jails, containers, zfs">
-		<meta name="generator" content="Hugo 0.57.2" />
+		<meta name="generator" content="Hugo 0.72.0" />
 		<title>Default username, password &middot; fabrik</title>
         <link rel="apple-touch-icon" sizes="57x57" href="https://fabrik.red/images/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="https://fabrik.red/images/apple-icon-60x60.png">
@@ -76,33 +76,19 @@
                     </h2>
                 </header>
                 <section id="post-body">
-                    
-
-<p><strong>devops</strong> is the only username created with password <code>fabrik</code>.</p>
-
+                    <p><strong>devops</strong> is the only username created with password <code>fabrik</code>.</p>
 <p>After verifying that image is booting, log in to the instance, change the
 password or configure ssh to only allow access by using ssh keys.</p>
-
 <p>If using AWS or GCE the image will try to fetch the ssh public key on the
 firstboot, and add it to the <code>~/.ssh/authorized_keys</code> file.</p>
-
 <h3 id="gce">GCE</h3>
-
 <p>For GCE this URL is used in <a href="https://github.com/fabrik-red/images/blob/master/gce_firstboot">gce_firstboot</a>:</p>
-
-<pre><code class="language-url">http://169.254.169.254/computeMetadata/v1/project/attributes/ssh-keys
-</code></pre>
-
-<p>More info can be found here: <a href="https://cloud.google.com/compute/docs/storing-retrieving-metadata">https://cloud.google.com/compute/docs/storing-retrieving-metadata</a></p>
-
+<pre><code class="language-url" data-lang="url">http://169.254.169.254/computeMetadata/v1/project/attributes/ssh-keys
+</code></pre><p>More info can be found here: <a href="https://cloud.google.com/compute/docs/storing-retrieving-metadata">https://cloud.google.com/compute/docs/storing-retrieving-metadata</a></p>
 <h3 id="aws">AWS</h3>
-
 <p>For AWS this URL is used in <a href="https://github.com/fabrik-red/images/blob/master/aws_firstboot">aws_firstboot</a>:</p>
-
-<pre><code class="language-url">http://169.254.169.254/1.0/meta-data/public-keys/0/openssh-key
-</code></pre>
-
-<p>More info can be found here: <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html">http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html</a></p>
+<pre><code class="language-url" data-lang="url">http://169.254.169.254/1.0/meta-data/public-keys/0/openssh-key
+</code></pre><p>More info can be found here: <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html">http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html</a></p>
 
                 </section>
             </article>
